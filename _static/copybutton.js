@@ -69,7 +69,7 @@ const addCopyButtonToCodeCells = () => {
   }
 
   // Add copybuttons to all of our code cells
-  const codeCells = document.querySelectorAll('div.highlight pre')
+  const codeCells = document.querySelectorAll('div.highlight:not(.extract):not(.swish) > pre')
   codeCells.forEach((codeCell, index) => {
     const id = codeCellId(index)
     codeCell.setAttribute('id', id)
@@ -133,7 +133,7 @@ function formatCopyText(textContent, copybuttonPromptText, isRegexp = false, onl
 
 var copyTargetText = (trigger) => {
   var target = document.querySelector(trigger.attributes['data-clipboard-target'].value);
-  return formatCopyText(target.innerText, '', false, true,  true)
+  return formatCopyText(target.innerText, '\\s*\\?\\s*-\\s*', true, false,  true)
 }
 
   // Initialize with a callback so we can modify the text before copy
