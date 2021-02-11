@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3.3. Negation as failure &#8212; Simply Logical:&lt;br&gt;Intelligent Reasoning by Example</title>
     
-  <link rel="stylesheet" href="../../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
     
   <link rel="stylesheet"
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sl.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
 
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -818,7 +818,7 @@
 </div>
 <p>Thus, we see that changing the order of the literals in the body of a clause does not only affect the order in which answers to a query are found, but it may also change the set of answers! Of course, this is very much against the spirit of declarative programming, because the declarative interpretation of a clause does not depend on the order of the literals. Therefore, some Prolog interpreters provide a mechanism which defers the evaluation of <code class="docutils literal notranslate"><span class="pre">not(G)</span></code> until <code class="docutils literal notranslate"><span class="pre">G</span></code> is ground. However, with standard Prolog it is the programmer’s duty to ensure that <code class="docutils literal notranslate"><span class="pre">not</span></code> is never called with a non-ground argument.</p>
 <p>Let’s summarise the points made about negation in Prolog. It is often used to ensure that only one of several possible clauses is applicable. The same effect can be achieved by means of cut, but in general we prefer the use of <code class="docutils literal notranslate"><span class="pre">not</span></code>, although it is somewhat less efficient<a class="footnote-reference brackets" href="#id6" id="id3">3</a>. <code class="docutils literal notranslate"><span class="pre">not</span></code> is supplied by Prolog as a meta-predicate (i.e. a predicate which takes formulas from the same logical language in which it is written as arguments). It is only a partially correct implementation of negation as failure, since it does not operate correctly when its argument is a goal containing variables.</p>
-<hr class="docutils" />
+<hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Written this way to distinguish them from the arrows <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>.</p>
@@ -889,7 +889,7 @@
     </div>
 
     
-  <script src="../../../_static/js/index.3da636dd464baa7582d2.js"></script>
+  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
 
 
     

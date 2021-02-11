@@ -37,6 +37,12 @@ var RE_Q = /^\s*(?:\?\s*-)\s*(?:.+?)\s*(?:\.)/mis;
       return obj;
     }
 
+    // NOTE (KS edit): handle sourcing a Prolog file from a URL
+    var prolog_file = elem.attr('prolog-file');
+    if (typeof prolog_file !== typeof undefined && prolog_file !== false) {
+      data.source_url = prolog_file;
+    }
+
     // Begin edited by TW.
     if( elem.hasClass("temp") ) {
       // NOTE (KS edit): discard Prolog queries included via the
@@ -212,7 +218,7 @@ var RE_Q = /^\s*(?:\?\s*-)\s*(?:.+?)\s*(?:\.)/mis;
     }
 
     var data    = elem.data(pluginName);
-  if ( data.swish ) {
+  if ( data.swish ) {  // close a swish box
       var swish = data.swish;
 
       delete data.swish;
@@ -222,17 +228,21 @@ var RE_Q = /^\s*(?:\?\s*-)\s*(?:.+?)\s*(?:\.)/mis;
       elem.parent()
   .resizable('destroy')
         .css("height", "auto");
-    } else
-    {
-    var query   = data.swishURL;
+    } else {  // open a swish box
+      var query   = data.swishURL;
       var content = [ "<iframe " ];
       var q = "?";
 
       if ( currentSWISHElem )
     toggleSWISH(currentSWISHElem);
 
-      if ( data.source ) {
+      // NOTE (KS edit): handle sourcing a Prolog file from a URL
+      if ( data.source && !(data.source_url) ) {
     query += q +"code="+encodeURIComponent(data.source);
+    q = "&";
+      }
+      if ( data.source_url ) {
+    query += q +"code="+encodeURIComponent(data.source_url);
     q = "&";
       }
 

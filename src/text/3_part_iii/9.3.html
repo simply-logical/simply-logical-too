@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>9.3. Top-down induction &#8212; Simply Logical:&lt;br&gt;Intelligent Reasoning by Example</title>
     
-  <link rel="stylesheet" href="../../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
     
   <link rel="stylesheet"
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sl.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
 
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -944,6 +944,250 @@
 <p class="admonition-title"><span class="caption-number">Exercise 9.3.1 </span><a class="headerlink" href="#ex-9-5" title="Permalink to this exercise">¶</a></p>
 <p>Replace the iterative deepening search strategy with beam search (see the article by Quinlan, referred to below, for a possible heuristic).</p>
 </div>
+<!--TODO-->
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-section93">
+<pre class="literal-block source swish" id="swish-section93-code" prolog-file="https://too.simply-logical.space/_sources/prolog_build_files/section93-merged.pl">
+<span></span><span class="c1">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="c1">%                                                      %</span>
+<span class="c1">%   Prolog programs from Section 9.3 of the book       %</span>
+<span class="c1">%   SIMPLY LOGICAL: Intelligent reasoning by example   %</span>
+<span class="c1">%   (c) Peter A. Flach/John Wiley &amp; Sons, 1994.        %</span>
+<span class="c1">%                                                      %</span>
+<span class="c1">%   Predicates: induce_spec/2                          %</span>
+<span class="c1">%                                                      %</span>
+<span class="c1">%   NB. This file needs predicates defined in          %</span>
+<span class="c1">%   the file &#39;library&#39;.                                %</span>
+<span class="c1">%                                                      %</span>
+<span class="c1">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+
+<span class="p">:-</span><span class="nf">consult</span><span class="p">(</span><span class="s s-Atom">library</span><span class="p">).</span>
+
+
+<span class="c1">%%% 9.3  Top-down induction %%%</span>
+
+<span class="nf">induce_spec</span><span class="p">(</span><span class="nv">Examples</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">):-</span>
+    <span class="nf">writeln</span><span class="p">(</span><span class="s s-Atom">&#39;%%% Top-down induction %%%&#39;</span><span class="p">),</span>
+    <span class="nf">writeln</span><span class="p">(</span><span class="s s-Atom">&#39;Examples&#39;</span><span class="p">),</span>
+    <span class="nf">writelns</span><span class="p">(</span><span class="nv">Examples</span><span class="p">),</span>
+    <span class="nf">process_examples</span><span class="p">([],[],</span><span class="nv">Examples</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">).</span>
+
+<span class="c1">% process the examples</span>
+<span class="nf">process_examples</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">,</span><span class="nv">Done</span><span class="p">,[],</span><span class="nv">Clauses</span><span class="p">).</span>
+<span class="nf">process_examples</span><span class="p">(</span><span class="nv">Cls1</span><span class="p">,</span><span class="nv">Done</span><span class="p">,[</span><span class="nv">Ex</span><span class="p">|</span><span class="nv">Exs</span><span class="p">],</span><span class="nv">Clauses</span><span class="p">):-</span>
+    <span class="nf">process_example</span><span class="p">(</span><span class="nv">Cls1</span><span class="p">,</span><span class="nv">Done</span><span class="p">,</span><span class="nv">Ex</span><span class="p">,</span><span class="nv">Cls2</span><span class="p">),</span>
+    <span class="nf">process_examples</span><span class="p">(</span><span class="nv">Cls2</span><span class="p">,[</span><span class="nv">Ex</span><span class="p">|</span><span class="nv">Done</span><span class="p">],</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">).</span>
+
+<span class="c1">% process one example</span>
+<span class="nf">process_example</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">,</span><span class="nv">Done</span><span class="p">,</span><span class="o">+</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">):-</span>
+    <span class="nf">covers</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">,</span><span class="nv">Example</span><span class="p">).</span>
+<span class="nf">process_example</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Done</span><span class="p">,</span><span class="o">+</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">):-</span>
+    <span class="o">not</span> <span class="nf">covers</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Example</span><span class="p">),</span>
+    <span class="nf">generalise</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Done</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">).</span>
+<span class="nf">process_example</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Done</span><span class="p">,</span><span class="o">-</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">):-</span>
+    <span class="nf">covers</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Example</span><span class="p">),</span>
+    <span class="nf">specialise</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Done</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">).</span>
+<span class="nf">process_example</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">,</span><span class="nv">Done</span><span class="p">,</span><span class="o">-</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">):-</span>
+    <span class="o">not</span> <span class="nf">covers</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">,</span><span class="nv">Example</span><span class="p">).</span>
+
+
+<span class="c1">% covers(Clauses,Ex) &lt;- Ex can be proved from Clauses and</span>
+<span class="c1">%                       background theory in max. 10 steps</span>
+<span class="nf">covers</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">,</span><span class="nv">Example</span><span class="p">):-</span>
+    <span class="nf">prove_d</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">,</span><span class="nv">Example</span><span class="p">).</span>
+
+<span class="nf">prove_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">Cls</span><span class="p">,</span><span class="s s-Atom">true</span><span class="p">):-!.</span>
+<span class="nf">prove_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">Cls</span><span class="p">,(</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">)):-!,</span>
+    <span class="nf">prove_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">A</span><span class="p">),</span>
+    <span class="nf">prove_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">B</span><span class="p">).</span>
+<span class="nf">prove_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">A</span><span class="p">):-</span>
+    <span class="nv">D</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span><span class="nv">D1</span> <span class="o">is</span> <span class="nv">D</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nf">copy_element</span><span class="p">((</span><span class="nv">A</span><span class="p">:-</span><span class="nv">B</span><span class="p">),</span><span class="nv">Cls</span><span class="p">),</span>  <span class="c1">% make copy of clause</span>
+    <span class="nf">prove_d</span><span class="p">(</span><span class="nv">D1</span><span class="p">,</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">B</span><span class="p">).</span>
+<span class="nf">prove_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">A</span><span class="p">):-</span>
+    <span class="nf">prove_bg</span><span class="p">(</span><span class="nv">A</span><span class="p">).</span>
+
+<span class="nf">prove_bg</span><span class="p">(</span><span class="s s-Atom">true</span><span class="p">):-!.</span>
+<span class="nf">prove_bg</span><span class="p">((</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">)):-!,</span>
+    <span class="nf">prove_bg</span><span class="p">(</span><span class="nv">A</span><span class="p">),</span>
+    <span class="nf">prove_bg</span><span class="p">(</span><span class="nv">B</span><span class="p">).</span>
+<span class="nf">prove_bg</span><span class="p">(</span><span class="nv">A</span><span class="p">):-</span>
+    <span class="nf">bg</span><span class="p">((</span><span class="nv">A</span><span class="p">:-</span><span class="nv">B</span><span class="p">)),</span>
+    <span class="nf">prove_bg</span><span class="p">(</span><span class="nv">B</span><span class="p">).</span>
+
+
+<span class="c1">% Specialisation by removing a refuted clause</span>
+<span class="nf">specialise</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Done</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">):-</span>
+    <span class="nf">false_clause</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Done</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">C</span><span class="p">),</span>
+    <span class="nf">remove_one</span><span class="p">(</span><span class="nv">C</span><span class="p">,</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Cls1</span><span class="p">),</span>
+    <span class="nf">write</span><span class="p">(</span><span class="s s-Atom">&#39;     ...refuted: &#39;</span><span class="p">),</span><span class="nf">write</span><span class="p">(</span><span class="nv">C</span><span class="p">),</span><span class="s s-Atom">nl</span><span class="p">,</span><span class="s s-Atom">nl</span><span class="p">,</span>
+    <span class="nf">writeln</span><span class="p">(</span><span class="s s-Atom">&#39;&lt;return&gt; to continue&#39;</span><span class="p">),</span><span class="nf">readln</span><span class="p">(</span><span class="k">_</span><span class="p">),</span>
+    <span class="nf">process_examples</span><span class="p">(</span><span class="nv">Cls1</span><span class="p">,[],[</span><span class="o">-</span><span class="nv">Example</span><span class="p">|</span><span class="nv">Done</span><span class="p">],</span><span class="nv">Clauses</span><span class="p">).</span>
+
+<span class="c1">% false_clause(Cs,E,E,C) &lt;- C is a false clause in the proof of E (or ok)</span>
+<span class="nf">false_clause</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="s s-Atom">true</span><span class="p">,</span><span class="s s-Atom">ok</span><span class="p">):-!.</span>
+<span class="nf">false_clause</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,(</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">),</span><span class="nv">X</span><span class="p">):-!,</span>
+    <span class="nf">false_clause</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">A</span><span class="p">,</span><span class="nv">Xa</span><span class="p">),</span>
+    <span class="p">(</span> <span class="nv">Xa</span> <span class="o">=</span> <span class="s s-Atom">ok</span>   <span class="s s-Atom">-&gt;</span> <span class="nf">false_clause</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">B</span><span class="p">,</span><span class="nv">X</span><span class="p">)</span>
+    <span class="p">;</span> <span class="s s-Atom">otherwise</span> <span class="s s-Atom">-&gt;</span> <span class="nv">X</span> <span class="o">=</span> <span class="nv">Xa</span>
+    <span class="p">).</span>
+<span class="nf">false_clause</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">E</span><span class="p">,</span><span class="s s-Atom">ok</span><span class="p">):-</span>
+    <span class="nf">element</span><span class="p">(</span><span class="o">+</span><span class="nv">E</span><span class="p">,</span><span class="nv">Exs</span><span class="p">),!.</span>
+<span class="nf">false_clause</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">A</span><span class="p">,</span><span class="s s-Atom">ok</span><span class="p">):-</span>
+    <span class="nf">bg</span><span class="p">((</span><span class="nv">A</span><span class="p">:-</span><span class="nv">B</span><span class="p">)),!.</span>
+<span class="nf">false_clause</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">A</span><span class="p">,</span><span class="nv">X</span><span class="p">):-</span>
+    <span class="nf">copy_element</span><span class="p">((</span><span class="nv">A</span><span class="p">:-</span><span class="nv">B</span><span class="p">),</span><span class="nv">Cls</span><span class="p">),</span>
+    <span class="nf">false_clause</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">B</span><span class="p">,</span><span class="nv">Xb</span><span class="p">),</span>
+    <span class="p">(</span> <span class="nv">Xb</span> <span class="s s-Atom">\=</span> <span class="s s-Atom">ok</span>  <span class="s s-Atom">-&gt;</span> <span class="nv">X</span> <span class="o">=</span> <span class="nv">Xb</span>
+    <span class="p">;</span> <span class="s s-Atom">otherwise</span> <span class="s s-Atom">-&gt;</span> <span class="nv">X</span> <span class="o">=</span> <span class="p">(</span><span class="nv">A</span><span class="p">:-</span><span class="nv">B</span><span class="p">)</span>
+    <span class="p">).</span>
+
+
+<span class="c1">% Generalisation by adding a covering clause</span>
+<span class="nf">generalise</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Done</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">):-</span>
+    <span class="nf">write</span><span class="p">(</span><span class="s s-Atom">&#39;Generalising example: &#39;</span><span class="p">),</span><span class="nf">write</span><span class="p">(</span><span class="nv">Example</span><span class="p">),</span><span class="s s-Atom">nl</span><span class="p">,</span>
+    <span class="nf">search_clause</span><span class="p">(</span><span class="nv">Done</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Cl</span><span class="p">),</span>
+    <span class="nf">writeln</span><span class="p">(</span><span class="s s-Atom">&#39;Found clause: &#39;</span><span class="p">),</span><span class="nf">portray_clause</span><span class="p">(</span><span class="nv">Cl</span><span class="p">),</span><span class="s s-Atom">nl</span><span class="p">,</span>
+    <span class="nf">writeln</span><span class="p">(</span><span class="s s-Atom">&#39;&lt;return&gt; to continue&#39;</span><span class="p">),</span><span class="nf">readln</span><span class="p">(</span><span class="k">_</span><span class="p">),</span>
+    <span class="nf">process_examples</span><span class="p">([</span><span class="nv">Cl</span><span class="p">|</span><span class="nv">Cls</span><span class="p">],[],[</span><span class="o">+</span><span class="nv">Example</span><span class="p">|</span><span class="nv">Done</span><span class="p">],</span><span class="nv">Clauses</span><span class="p">).</span>
+
+
+<span class="c1">% search_clause(Exs,E,C) &lt;- C is a clause covering E and</span>
+<span class="c1">%                           not covering negative examples</span>
+<span class="c1">%                           (iterative deepening search)</span>
+<span class="nf">search_clause</span><span class="p">(</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clause</span><span class="p">):-</span>
+    <span class="nf">literal</span><span class="p">(</span><span class="nv">Head</span><span class="p">,</span><span class="nv">Vars</span><span class="p">),</span>
+    <span class="nf">try</span><span class="p">((</span><span class="nv">Head</span><span class="o">=</span><span class="nv">Example</span><span class="p">)),</span>
+    <span class="nf">search_clause</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="nf">a</span><span class="p">((</span><span class="nv">Head</span><span class="p">:-</span><span class="s s-Atom">true</span><span class="p">),</span><span class="nv">Vars</span><span class="p">),</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clause</span><span class="p">).</span>
+
+<span class="nf">search_clause</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">Current</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clause</span><span class="p">):-</span>
+    <span class="nf">write</span><span class="p">(</span><span class="nv">D</span><span class="p">),</span><span class="nf">write</span><span class="p">(</span><span class="s s-Atom">&#39;..&#39;</span><span class="p">),</span>
+    <span class="nf">search_clause_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">Current</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clause</span><span class="p">),!.</span>
+<span class="nf">search_clause</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">Current</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clause</span><span class="p">):-</span>
+    <span class="nv">D1</span> <span class="o">is</span> <span class="nv">D</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">!,</span><span class="nf">search_clause</span><span class="p">(</span><span class="nv">D1</span><span class="p">,</span><span class="nv">Current</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clause</span><span class="p">).</span>
+
+<span class="nf">search_clause_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nf">a</span><span class="p">(</span><span class="nv">Clause</span><span class="p">,</span><span class="nv">Vars</span><span class="p">),</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clause</span><span class="p">):-</span>
+    <span class="nf">covers_ex</span><span class="p">(</span><span class="nv">Clause</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Exs</span><span class="p">),</span>  <span class="c1">% goal</span>
+    <span class="o">not</span><span class="p">((</span><span class="nf">element</span><span class="p">(</span><span class="o">-</span><span class="nv">N</span><span class="p">,</span><span class="nv">Exs</span><span class="p">),</span><span class="nf">covers_ex</span><span class="p">(</span><span class="nv">Clause</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">Exs</span><span class="p">))),!.</span>
+<span class="nf">search_clause_d</span><span class="p">(</span><span class="nv">D</span><span class="p">,</span><span class="nv">Current</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clause</span><span class="p">):-</span>
+    <span class="nv">D</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span><span class="nv">D1</span> <span class="o">is</span> <span class="nv">D</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nf">specialise_clause</span><span class="p">(</span><span class="nv">Current</span><span class="p">,</span><span class="nv">Spec</span><span class="p">),</span>
+    <span class="nf">search_clause_d</span><span class="p">(</span><span class="nv">D1</span><span class="p">,</span><span class="nv">Spec</span><span class="p">,</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clause</span><span class="p">).</span>
+
+
+<span class="c1">% Extensional coverage</span>
+<span class="nf">covers_ex</span><span class="p">((</span><span class="nv">Head</span><span class="p">:-</span><span class="nv">Body</span><span class="p">),</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Exs</span><span class="p">):-</span>
+    <span class="nf">try</span><span class="p">((</span><span class="nv">Head</span><span class="o">=</span><span class="nv">Example</span><span class="p">,</span><span class="nf">covers_ex</span><span class="p">(</span><span class="nv">Body</span><span class="p">,</span><span class="nv">Exs</span><span class="p">))).</span>
+
+<span class="nf">covers_ex</span><span class="p">(</span><span class="s s-Atom">true</span><span class="p">,</span><span class="nv">Exs</span><span class="p">):-!.</span>
+<span class="nf">covers_ex</span><span class="p">((</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">),</span><span class="nv">Exs</span><span class="p">):-!,</span>
+    <span class="nf">covers_ex</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">Exs</span><span class="p">),</span>
+    <span class="nf">covers_ex</span><span class="p">(</span><span class="nv">B</span><span class="p">,</span><span class="nv">Exs</span><span class="p">).</span>
+<span class="nf">covers_ex</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">Exs</span><span class="p">):-</span>
+    <span class="nf">element</span><span class="p">(</span><span class="o">+</span><span class="nv">A</span><span class="p">,</span><span class="nv">Exs</span><span class="p">).</span>
+<span class="nf">covers_ex</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">Exs</span><span class="p">):-</span>
+    <span class="nf">prove_bg</span><span class="p">(</span><span class="nv">A</span><span class="p">).</span>
+
+
+<span class="c1">% specialise_clause(C,S) &lt;- S is a minimal specialisation</span>
+<span class="c1">%                           of C under theta-subsumption</span>
+<span class="nf">specialise_clause</span><span class="p">(</span><span class="nv">Current</span><span class="p">,</span><span class="nv">Spec</span><span class="p">):-</span>
+    <span class="nf">add_literal</span><span class="p">(</span><span class="nv">Current</span><span class="p">,</span><span class="nv">Spec</span><span class="p">).</span>
+<span class="nf">specialise_clause</span><span class="p">(</span><span class="nv">Current</span><span class="p">,</span><span class="nv">Spec</span><span class="p">):-</span>
+    <span class="nf">apply_subs</span><span class="p">(</span><span class="nv">Current</span><span class="p">,</span><span class="nv">Spec</span><span class="p">).</span>
+
+<span class="nf">add_literal</span><span class="p">(</span><span class="nf">a</span><span class="p">((</span><span class="nv">H</span><span class="p">:-</span><span class="s s-Atom">true</span><span class="p">),</span><span class="nv">Vars</span><span class="p">),</span><span class="nf">a</span><span class="p">((</span><span class="nv">H</span><span class="p">:-</span><span class="nv">L</span><span class="p">),</span><span class="nv">Vars</span><span class="p">)):-!,</span>
+    <span class="nf">literal</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span><span class="nv">LVars</span><span class="p">),</span>
+    <span class="nf">proper_subset</span><span class="p">(</span><span class="nv">LVars</span><span class="p">,</span><span class="nv">Vars</span><span class="p">).</span>
+<span class="nf">add_literal</span><span class="p">(</span><span class="nf">a</span><span class="p">((</span><span class="nv">H</span><span class="p">:-</span><span class="nv">B</span><span class="p">),</span><span class="nv">Vars</span><span class="p">),</span><span class="nf">a</span><span class="p">((</span><span class="nv">H</span><span class="p">:-</span><span class="nv">L</span><span class="p">,</span><span class="nv">B</span><span class="p">),</span><span class="nv">Vars</span><span class="p">)):-</span>
+    <span class="nf">literal</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span><span class="nv">LVars</span><span class="p">),</span>
+    <span class="nf">proper_subset</span><span class="p">(</span><span class="nv">LVars</span><span class="p">,</span><span class="nv">Vars</span><span class="p">).</span>
+
+<span class="nf">apply_subs</span><span class="p">(</span><span class="nf">a</span><span class="p">(</span><span class="nv">Clause</span><span class="p">,</span><span class="nv">Vars</span><span class="p">),</span><span class="nf">a</span><span class="p">(</span><span class="nv">Spec</span><span class="p">,</span><span class="nv">SVars</span><span class="p">)):-</span>
+    <span class="nf">copy_term</span><span class="p">(</span><span class="nf">a</span><span class="p">(</span><span class="nv">Clause</span><span class="p">,</span><span class="nv">Vars</span><span class="p">),</span><span class="nf">a</span><span class="p">(</span><span class="nv">Spec</span><span class="p">,</span><span class="nv">Vs</span><span class="p">)),</span>
+    <span class="nf">apply_subs1</span><span class="p">(</span><span class="nv">Vs</span><span class="p">,</span><span class="nv">SVars</span><span class="p">).</span>
+
+<span class="nf">apply_subs1</span><span class="p">(</span><span class="nv">Vars</span><span class="p">,</span><span class="nv">SVars</span><span class="p">):-</span>
+    <span class="nf">unify_two</span><span class="p">(</span><span class="nv">Vars</span><span class="p">,</span><span class="nv">SVars</span><span class="p">).</span>
+<span class="nf">apply_subs1</span><span class="p">(</span><span class="nv">Vars</span><span class="p">,</span><span class="nv">SVars</span><span class="p">):-</span>
+    <span class="nf">subs_term</span><span class="p">(</span><span class="nv">Vars</span><span class="p">,</span><span class="nv">SVars</span><span class="p">).</span>
+
+<span class="nf">unify_two</span><span class="p">([</span><span class="nv">X</span><span class="p">|</span><span class="nv">Vars</span><span class="p">],</span><span class="nv">Vars</span><span class="p">):-</span>
+    <span class="nf">element</span><span class="p">(</span><span class="nv">Y</span><span class="p">,</span><span class="nv">Vars</span><span class="p">),</span>
+    <span class="nv">X</span><span class="o">=</span><span class="nv">Y</span><span class="p">.</span>
+<span class="nf">unify_two</span><span class="p">([</span><span class="nv">X</span><span class="p">|</span><span class="nv">Vars</span><span class="p">],[</span><span class="nv">X</span><span class="p">|</span><span class="nv">SVars</span><span class="p">]):-</span>
+    <span class="nf">unify_two</span><span class="p">(</span><span class="nv">Vars</span><span class="p">,</span><span class="nv">SVars</span><span class="p">).</span>
+
+<span class="nf">subs_term</span><span class="p">(</span><span class="nv">Vars</span><span class="p">,</span><span class="nv">SVars</span><span class="p">):-</span>
+    <span class="nf">remove_one</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Vars</span><span class="p">,</span><span class="nv">Vs</span><span class="p">),</span>
+    <span class="nf">term</span><span class="p">(</span><span class="nv">Term</span><span class="p">,</span><span class="nv">TVars</span><span class="p">),</span>
+    <span class="nv">X</span><span class="o">=</span><span class="nv">Term</span><span class="p">,</span>
+    <span class="nf">append</span><span class="p">(</span><span class="nv">Vs</span><span class="p">,</span><span class="nv">TVars</span><span class="p">,</span><span class="nv">SVars</span><span class="p">).</span>
+
+
+<span class="c1">%%% Queries %%%</span>
+
+<span class="nf">term</span><span class="p">(</span><span class="nf">list</span><span class="p">([]),[]).</span>
+<span class="nf">term</span><span class="p">(</span><span class="nf">list</span><span class="p">([</span><span class="nv">X</span><span class="p">|</span><span class="nv">Y</span><span class="p">]),[</span><span class="nf">item</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">list</span><span class="p">(</span><span class="nv">Y</span><span class="p">)]).</span>
+
+<span class="c1">%%%%%%%%%%%%%%%%%%  element/2  %%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+<span class="cm">/*</span>
+<span class="cm">literal(element(X,Y),[item(X),list(Y)]).</span>
+
+<span class="cm">bg(true).</span>
+<span class="cm">*/</span>
+
+<span class="nf">query1</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">):-</span>
+    <span class="nf">induce_spec</span><span class="p">([</span><span class="o">+</span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">a</span><span class="p">,[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span>
+                 <span class="o">-</span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">x</span><span class="p">,[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]),</span>
+                 <span class="o">+</span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">b</span><span class="p">,[</span><span class="s s-Atom">b</span><span class="p">]),</span>
+                 <span class="o">+</span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">b</span><span class="p">,[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">])</span>
+                <span class="p">],</span><span class="nv">Clauses</span><span class="p">).</span>
+
+
+<span class="c1">%%%%%%%%%%%%%%%%%%  append/3   %%%%%%%%%%%%%%%%%%%%%%%</span>
+
+<span class="cm">/*</span>
+<span class="cm">literal(append(X,Y,Z),[list(X),list(Y),list(Z)]).</span>
+
+<span class="cm">bg(true).</span>
+<span class="cm">*/</span>
+
+<span class="nf">query2</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">):-</span>
+    <span class="nf">induce_spec</span><span class="p">([</span><span class="o">+</span><span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+                 <span class="o">-</span><span class="nf">append</span><span class="p">([],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">d</span><span class="p">]),</span>
+                 <span class="o">-</span><span class="nf">append</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">d</span><span class="p">],[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">d</span><span class="p">]),</span>
+                 <span class="o">-</span><span class="nf">append</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">d</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]),</span>
+                 <span class="o">-</span><span class="nf">append</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">d</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">]),</span>
+                 <span class="o">+</span><span class="nf">append</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">])</span>
+                <span class="p">],</span><span class="nv">Clauses</span><span class="p">).</span>
+
+<span class="c1">%%%%%%%%%%%%%%%%%%   listnum/2    %%%%%%%%%%%%%%%%%%%%%%%</span>
+
+
+<span class="nf">literal</span><span class="p">(</span><span class="nf">listnum</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">),[</span><span class="nf">list</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">list</span><span class="p">(</span><span class="nv">Y</span><span class="p">)]).</span>
+<span class="nf">literal</span><span class="p">(</span><span class="nf">num</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">),[</span><span class="nf">item</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span><span class="nf">item</span><span class="p">(</span><span class="nv">Y</span><span class="p">)]).</span>
+
+<span class="nf">bg</span><span class="p">((</span><span class="nf">num</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s s-Atom">one</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="nf">bg</span><span class="p">((</span><span class="nf">num</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s s-Atom">two</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="nf">bg</span><span class="p">((</span><span class="nf">num</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s s-Atom">three</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="nf">bg</span><span class="p">((</span><span class="nf">num</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="s s-Atom">four</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+<span class="nf">bg</span><span class="p">((</span><span class="nf">num</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="s s-Atom">five</span><span class="p">):-</span><span class="s s-Atom">true</span><span class="p">)).</span>
+
+
+<span class="nf">query3</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">):-</span>
+    <span class="nf">induce_spec</span><span class="p">([</span><span class="o">+</span><span class="nf">listnum</span><span class="p">([],[]),</span>
+                 <span class="o">-</span><span class="nf">listnum</span><span class="p">([</span><span class="s s-Atom">one</span><span class="p">],[</span><span class="s s-Atom">one</span><span class="p">]),</span>
+                 <span class="o">-</span><span class="nf">listnum</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="s s-Atom">two</span><span class="p">],[</span><span class="s s-Atom">one</span><span class="p">,</span><span class="s s-Atom">two</span><span class="p">]),</span>
+                 <span class="o">+</span><span class="nf">listnum</span><span class="p">([</span><span class="mi">1</span><span class="p">],[</span><span class="s s-Atom">one</span><span class="p">]),</span>
+                 <span class="o">-</span><span class="nf">listnum</span><span class="p">([</span><span class="s s-Atom">five</span><span class="p">,</span><span class="s s-Atom">two</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="s s-Atom">two</span><span class="p">]),</span>
+                 <span class="o">+</span><span class="nf">listnum</span><span class="p">([</span><span class="s s-Atom">five</span><span class="p">],[</span><span class="mi">5</span><span class="p">])</span>
+                <span class="p">],</span><span class="nv">Clauses</span><span class="p">).</span>
+
+<span class="c1">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre></div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -965,6 +1209,9 @@
     }
     </script>
     <script>kernelName = 'python3'</script>
+
+    <script>$(function() { $(".swish").LPN({swish:"https://swish.simply-logical.space/"}); });</script>
+
 
               </div>
               
@@ -1000,7 +1247,7 @@
     </div>
 
     
-  <script src="../../../_static/js/index.3da636dd464baa7582d2.js"></script>
+  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
 
 
     

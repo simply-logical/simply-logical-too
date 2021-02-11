@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2.1. Propositional clausal logic &#8212; Simply Logical:&lt;br&gt;Intelligent Reasoning by Example</title>
     
-  <link rel="stylesheet" href="../../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
     
   <link rel="stylesheet"
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-prolog.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/lpn.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/jquery-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sl.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
 
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -845,7 +845,7 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
 </div>
 <p>Finally, we mention that although resolution can always be used to prove inconsistency of a set of clauses it is not always fit to prove the opposite, i.e. consistency of a set of clauses. For instance, <code class="docutils literal notranslate"><span class="pre">a</span></code> is not a logical consequence of <code class="docutils literal notranslate"><span class="pre">a:-a</span></code>; yet, if we try to prove the inconsistency of <code class="docutils literal notranslate"><span class="pre">:-a</span></code> and <code class="docutils literal notranslate"><span class="pre">a:-a</span></code> (which should fail) we can go on applying resolution forever! The reason, of course, is that there is a loop in the system: applying resolution to <code class="docutils literal notranslate"><span class="pre">:-a</span></code> and <code class="docutils literal notranslate"><span class="pre">a:-a</span></code> again yields <code class="docutils literal notranslate"><span class="pre">:-a</span></code>. In this simple case it is easy to check for loops: just maintain a list of previously derived clauses, and do not proceed with clauses that have been derived previously.</p>
 <p>However, as we will see, this is not possible in the general case of full clausal logic, which is <em>semi-decidable</em> with respect to the question ‘is <span class="math notranslate nohighlight">\(B\)</span> a logical consequence of <span class="math notranslate nohighlight">\(A\)</span>’: there is an algorithm which derives, in finite time, a proof if one exists, but there is no algorithm which, for any <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, halts and returns ‘no’ if no proof exists. The reason for this is that interpretations for full clausal logic are in general infinite. As a consequence, some Prolog programs may loop forever (just like some Pascal programs). One might suggest that it should be possible to check, just by examining the source code, whether a program is going to loop or not, but, as Alan Turing showed, this is, in general, impossible (the Halting Problem). That is, you can write programs for checking termination of programs, but for any such termination checking program you can write a program on which it will not terminate itself!</p>
-<hr class="docutils" />
+<hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>It is often more convenient to read a clause in the opposite direction:<br>’<strong>if</strong> somebody is a man <strong>and</strong> an adult <strong>then</strong> he is married <strong>or</strong> a bachelor’.</p>
@@ -911,7 +911,7 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
     </div>
 
     
-  <script src="../../../_static/js/index.3da636dd464baa7582d2.js"></script>
+  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
 
 
     
