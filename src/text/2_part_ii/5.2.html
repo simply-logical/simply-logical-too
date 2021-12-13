@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>5.2. Depth-first search &#8212; Simply Logical:&lt;br&gt;Intelligent Reasoning by Example</title>
     
-  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -38,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -50,10 +47,10 @@
     <script src="../../../_static/lpn.js"></script>
     <script src="../../../_static/jquery-ui.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -65,14 +62,27 @@
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="5.3. Breadth-first search" href="5.3.html" />
     <link rel="prev" title="5.1. A general search procedure" href="5.1.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -81,51 +91,68 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../../index.html">
-  
-  <img src="../../../_static/SL.svg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Simply Logical:<br>Intelligent Reasoning by Example</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical:<br>Intelligent Reasoning by Example</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../simply-logical.html">
    Simply Logical
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../0_preface/_preface.html">
-   Preface
+   Preface to the online edition
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../0_preface/glossary.html">
      Glossary
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../1_part_i/_part_i.html">
    I. Logic and Logic Programming
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/1.0.html">
      1. A brief introduction to clausal logic
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/1.1.html">
        1.1. Answering queries
@@ -147,14 +174,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/2.0.html">
      2. Clausal logic and resolution: theoretical backgrounds
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/2.1.html">
        2.1. Propositional clausal logic
@@ -186,14 +216,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/3.0.html">
      3. Logic Programming and Prolog
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/3.1.html">
        3.1. SLD-resolution
@@ -245,23 +278,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="_part_ii.html">
    II. Reasoning with structured knowledge
   </a>
-  <ul class="current collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="4.0.html">
      4. Representing structured knowledge
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="4.1.html">
        4.1. Trees as terms
@@ -283,14 +322,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 current active collapsible-parent">
+   <li class="toctree-l2 current active has-children">
     <a class="reference internal" href="5.0.html">
      5. Searching graphs
     </a>
-    <ul class="current collapse-ul">
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
      <li class="toctree-l3">
       <a class="reference internal" href="5.1.html">
        5.1. A general search procedure
@@ -317,14 +359,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="6.0.html">
      6. Informed search
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="6.1.html">
        6.1. Best-first search
@@ -346,23 +391,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../3_part_iii/_part_iii.html">
    III. Advanced reasoning techniques
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/7.0.html">
      7. Reasoning with natural language
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/7.1.html">
        7.1. Grammars and parsing
@@ -384,14 +435,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/8.0.html">
      8. Reasoning with incomplete information
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/8.1.html">
        8.1. Default reasoning
@@ -418,14 +472,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/9.0.html">
      9. Inductive reasoning
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/9.1.html">
        9.1. Generalisation and specialisation
@@ -447,23 +504,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../appendices/_appendices.html">
    Appendices
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/a_0.html">
      10. A catalogue of useful predicates
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/a_1.html">
        10.1. Built-in predicates
@@ -475,14 +538,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/b_0.html">
      11. Two programs for logical conversion
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/b_1.html">
        11.1. From Predicate Logic to clausal logic
@@ -494,14 +560,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/c_0.html">
      12. Answers to selected exercises
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label for="toctree-checkbox-17">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/c_1.html">
        12.1. A brief introduction to clausal logic
@@ -548,29 +617,22 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference external" href="https://simply-logical.space/">
    Simply Logical Organisation
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
    Original Book Home
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -587,21 +649,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -619,7 +681,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -639,20 +701,21 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -743,11 +806,11 @@ children(Node,Children):-
 </div>
 <p>Note that the combination of loop detection and path construction allows the following optimisation: instead of maintaining complete paths to a node on the agenda and the list of visited nodes, we only store a node together with its parent. Once we encounter a goal, all its parents are on the list of visited nodes, which allows us to reconstruct the path.</p>
 <div class="admonition exercise" id="ex-5-1">
-<p class="admonition-title"><span class="caption-number">Exercise 5.2.1 </span><a class="headerlink" href="#ex-5-1" title="Permalink to this exercise">¶</a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 5.1 </span><a class="headerlink" href="#ex-5-1" title="Permalink to this exercise">¶</a></p>
 <p>Modify the predicate <code class="docutils literal notranslate"><span class="pre">search_df_loop/3</span></code> such that it reconstructs the path to a goal in this way.</p>
 </div>
-<p>We now analyse depth-first search with respect to completeness, optimality and efficiency. A search strategy is <em>complete</em> if it is guaranteed to find every goal. Obviously, any exhaustive strategy is complete for finite search spaces. However, in an infinite search space depth-first search might get trapped in an infinite branch before having found all the solutions. For instance, reconsider the infinite SLD-tree in <a class="reference internal" href="../1_part_i/3.1.html#fig-3-2"><span class="std std-numref">Figure 3.1.2</span></a>. A left-to-right depth-first search strategy would dive deeper and deeper into the tree, taking the left branch at every node, and never find the goals in the branches to the right. So, <em>depth-first search is, in general, incomplete</em>. Since Prolog itself employs depth-first search, Prolog is also incomplete. Often, however, the incompleteness of Prolog can be avoided by reordering the clauses such that goals are found before infinite branches (for instance, by putting the recursive clause last), and to cut away the infinite parts of the search space.</p>
-<p>If there is no cost function, a search strategy is optimal if it is guaranteed to reach any goal along the shortest path possible. The Staatsgalerie example already showed that this is not true for depth-first search: you found your friend but, while she was in a room next to your initial position, you finally reached that room through two other rooms. Thus, <em>depth-first search does not always find a shortest solution path</em>. Finally, we can estimate the memory requirements for depth-first search as follows. Suppose we are searching a tree in which each node has, on the average, <em>B</em> children. The number <em>B</em> is known as the <em>branching factor</em>. Generating the children of a node adds <em>B</em> nodes to the agenda. We are interested in the following question: if a goal is found at depth <em>n</em> (i.e. the path from the root to the goal has length <em>n</em>), how many nodes are there on the agenda? Since at each level only the children of a single node are generated, the size of the agenda is of the order <span class="math notranslate nohighlight">\(B \times n\)</span>, that is, a linear function of the depth of the tree. The time complexity of depth-first search is of the order <span class="math notranslate nohighlight">\(B^n\)</span>, since the runtime is proportional to the number of nodes searched, and in the worst case the goal is found in the last branch, after searching <span class="math notranslate nohighlight">\(B^n\)</span> nodes. Of course, we cannot hope to achieve any better for blind exhaustive search!</p>
+<p>We now analyse depth-first search with respect to completeness, optimality and efficiency. A search strategy is <em>complete</em> if it is guaranteed to find every goal. Obviously, any exhaustive strategy is complete for finite search spaces. However, in an infinite search space depth-first search might get trapped in an infinite branch before having found all the solutions. For instance, reconsider the infinite SLD-tree in <a class="reference internal" href="../1_part_i/3.1.html#fig-3-2"><span class="std std-numref">Figure 3.2</span></a>. A left-to-right depth-first search strategy would dive deeper and deeper into the tree, taking the left branch at every node, and never find the goals in the branches to the right. So, <em>depth-first search is, in general, incomplete</em>. Since Prolog itself employs depth-first search, Prolog is also incomplete. Often, however, the incompleteness of Prolog can be avoided by reordering the clauses such that goals are found before infinite branches (for instance, by putting the recursive clause last), and to cut away the infinite parts of the search space.</p>
+<p>If there is no cost function, a search strategy is optimal if it is guaranteed to reach any goal along the shortest path possible. The Staatsgalerie example already showed that this is not true for depth-first search: you found your friend but, while she was in a room next to your initial position, you finally reached that room through two other rooms. Thus, <em>depth-first search does not always find a shortest solution path</em>. Finally, we can estimate the memory requirements for depth-first search as follows. Suppose we are searching a tree in which each node has, on the average, <span class="math notranslate nohighlight">\(B\)</span> children. The number <span class="math notranslate nohighlight">\(B\)</span> is known as the <em>branching factor</em>. Generating the children of a node adds <span class="math notranslate nohighlight">\(B\)</span> nodes to the agenda. We are interested in the following question: if a goal is found at depth <span class="math notranslate nohighlight">\(n\)</span> (i.e. the path from the root to the goal has length <span class="math notranslate nohighlight">\(n\)</span>), how many nodes are there on the agenda? Since at each level only the children of a single node are generated, the size of the agenda is of the order <span class="math notranslate nohighlight">\(B \times n\)</span>, that is, a linear function of the depth of the tree. The time complexity of depth-first search is of the order <span class="math notranslate nohighlight">\(B^n\)</span>, since the runtime is proportional to the number of nodes searched, and in the worst case the goal is found in the last branch, after searching <span class="math notranslate nohighlight">\(B^n\)</span> nodes. Of course, we cannot hope to achieve any better for blind exhaustive search!</p>
 <p>In practice, depth-first search is only implemented as above if loop detection is an absolute must. Otherwise, the agenda is represented <em>implicitly</em> by means of Prolog’s internal goal stack. Children of a given node are generated one at a time, by means of Prolog’s backtracking mechanism, and examined immediately upon generation:</p>
 <div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="c1">% depth-first search by means of backtracking</span>
 <span class="nf">search_bt</span><span class="p">(</span><span class="nv">Goal</span><span class="p">,</span><span class="nv">Goal</span><span class="p">):-</span>
@@ -768,7 +831,7 @@ children(Node,Children):-
 </pre></div>
 </div>
 <p>In this way the search process is guaranteed to halt, but solutions which appear beyond the depth bound are missed.</p>
-<p><em>Iterative deepening</em> is a form of depth-first search which employs a depth bound that is increased on each iteration. That is, after performing a depth-first search with depth bound <em>d</em>, search starts all over again from the starting nodes with an increased depth bound <span class="math notranslate nohighlight">\(d + n\)</span>. The predicate <code class="docutils literal notranslate"><span class="pre">search_id/2</span></code> implements iterative deepening for <span class="math notranslate nohighlight">\(n = 1\)</span>.</p>
+<p><em>Iterative deepening</em> is a form of depth-first search which employs a depth bound that is increased on each iteration. That is, after performing a depth-first search with depth bound <span class="math notranslate nohighlight">\(d\)</span>, search starts all over again from the starting nodes with an increased depth bound <span class="math notranslate nohighlight">\(d + n\)</span>. The predicate <code class="docutils literal notranslate"><span class="pre">search_id/2</span></code> implements iterative deepening for <span class="math notranslate nohighlight">\(n = 1\)</span>.</p>
 <div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="c1">% iterative deepening</span>
 <span class="nf">search_id</span><span class="p">(</span><span class="nv">First</span><span class="p">,</span><span class="nv">Goal</span><span class="p">):-</span>
     <span class="nf">search_id</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nv">First</span><span class="p">,</span><span class="nv">Goal</span><span class="p">).</span>     <span class="c1">% start with depth 1</span>
@@ -782,7 +845,7 @@ children(Node,Children):-
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Iterative deepening applied to the palindrome example. Note no depth bound is needed.
+<p>Here is iterative deepening applied to the palindrome example. Note no depth bound is needed.
 Also note that the query just provides the starting node, not an initial agenda, due to the use of backtracking search within iterative deepening (<code class="docutils literal notranslate"><span class="pre">search_d/3</span></code>).</p>
 <div class="extract swish highlight highlight-Prolog notranslate" id="swish-search-id">
 <pre class="literal-block source swish" id="swish-search-id-code" source-text-start="search_id(First,Goal):-
@@ -848,17 +911,28 @@ children(Node,Children):-
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="5.1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">5.1. </span>A general search procedure</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="5.3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5.3. </span>Breadth-first search</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="5.1.html" title="previous page"><span class="section-number">5.1. </span>A general search procedure</a>
-    <a class='right-next' id="next-link" href="5.3.html" title="next page"><span class="section-number">5.3. </span>Breadth-first search</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -867,7 +941,7 @@ children(Node,Children):-
         
             &copy; Copyright 2015–2021.<br/>
           <div class="extra_footer">
-            This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer.
+            <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
 
           </div>
       </p>
@@ -878,21 +952,8 @@ children(Node,Children):-
 
       </div>
     </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-112595762-2', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>

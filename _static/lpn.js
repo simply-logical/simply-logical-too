@@ -7,7 +7,7 @@
  * @requires jquery
  */
 
-var SWISH = "https://swish.simply-logical.space/";
+var SWISH = "https://swish.swi-prolog.org/";
 var RE_EX = /\s*^\/\*\*\s*<examples>\s*$.*?(?!^\*\/\s*$).*?^\*\/\s*$\s*/mis;
 var RE_Q = /^\s*(?:\?\s*-)\s*(?:.+?)\s*(?:\.)/mis;
 
@@ -16,6 +16,7 @@ var RE_Q = /^\s*(?:\?\s*-)\s*(?:.+?)\s*(?:\.)/mis;
   var currentSWISHElem = null;
   var database = new Array();
   var keepingSource = [];
+  var orphanQueries = {};
 
   /** @lends $.fn.LPN */
   var methods = {
@@ -113,6 +114,13 @@ var RE_Q = /^\s*(?:\?\s*-)\s*(?:.+?)\s*(?:\.)/mis;
       data.source = startText + elem.text() + endText;
       }
 
+      // Check for query exports that were defined before this block
+      if ( data.id in orphanQueries ) {
+        data.queries = data.queries.concat(orphanQueries[data.id]);
+        delete orphanQueries[data.id];
+      }
+
+      // Check for query imports
       var attr = $(this).attr('query-id');
       if (typeof attr !== typeof undefined && attr !== false) {
       var queryIds = elem.attr("query-id").split(" ");
@@ -138,6 +146,7 @@ var RE_Q = /^\s*(?:\?\s*-)\s*(?:.+?)\s*(?:\.)/mis;
       }
       }
 
+      // Check for explicit queries
       var attr = $(this).attr('query-text');
       if (typeof attr !== typeof undefined && attr !== false) {
       var queryTexts = elem.attr("query-text").split(" ");
@@ -168,7 +177,13 @@ var RE_Q = /^\s*(?:\?\s*-)\s*(?:.+?)\s*(?:\.)/mis;
         }
 
         var data = Find(sourceIds[i]);
-        if (data != false) {
+        if ( data == false ) {
+          if ( sourceIds[i] in orphanQueries ) {
+            orphanQueries[sourceIds[i]].push(elem.text(), "\n");
+          } else {
+            orphanQueries[sourceIds[i]] = [elem.text(), "\n"];
+          }
+        } else {
           data.queries.push(elem.text(), "\n");
         }
       }

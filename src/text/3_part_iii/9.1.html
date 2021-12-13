@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>9.1. Generalisation and specialisation &#8212; Simply Logical:&lt;br&gt;Intelligent Reasoning by Example</title>
     
-  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -38,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -50,10 +47,10 @@
     <script src="../../../_static/lpn.js"></script>
     <script src="../../../_static/jquery-ui.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -65,14 +62,27 @@
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="9.2. Bottom-up induction" href="9.2.html" />
     <link rel="prev" title="9. Inductive reasoning" href="9.0.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -81,51 +91,68 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../../index.html">
-  
-  <img src="../../../_static/SL.svg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Simply Logical:<br>Intelligent Reasoning by Example</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical:<br>Intelligent Reasoning by Example</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../simply-logical.html">
    Simply Logical
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../0_preface/_preface.html">
-   Preface
+   Preface to the online edition
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../0_preface/glossary.html">
      Glossary
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../1_part_i/_part_i.html">
    I. Logic and Logic Programming
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/1.0.html">
      1. A brief introduction to clausal logic
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/1.1.html">
        1.1. Answering queries
@@ -147,14 +174,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/2.0.html">
      2. Clausal logic and resolution: theoretical backgrounds
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/2.1.html">
        2.1. Propositional clausal logic
@@ -186,14 +216,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/3.0.html">
      3. Logic Programming and Prolog
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/3.1.html">
        3.1. SLD-resolution
@@ -245,23 +278,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../2_part_ii/_part_ii.html">
    II. Reasoning with structured knowledge
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../2_part_ii/4.0.html">
      4. Representing structured knowledge
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../2_part_ii/4.1.html">
        4.1. Trees as terms
@@ -283,14 +322,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../2_part_ii/5.0.html">
      5. Searching graphs
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../2_part_ii/5.1.html">
        5.1. A general search procedure
@@ -317,14 +359,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../2_part_ii/6.0.html">
      6. Informed search
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../2_part_ii/6.1.html">
        6.1. Best-first search
@@ -346,23 +391,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="_part_iii.html">
    III. Advanced reasoning techniques
   </a>
-  <ul class="current collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="7.0.html">
      7. Reasoning with natural language
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="7.1.html">
        7.1. Grammars and parsing
@@ -384,14 +435,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="8.0.html">
      8. Reasoning with incomplete information
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="8.1.html">
        8.1. Default reasoning
@@ -418,14 +472,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 current active collapsible-parent">
+   <li class="toctree-l2 current active has-children">
     <a class="reference internal" href="9.0.html">
      9. Inductive reasoning
     </a>
-    <ul class="current collapse-ul">
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
        9.1. Generalisation and specialisation
@@ -447,23 +504,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../appendices/_appendices.html">
    Appendices
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/a_0.html">
      10. A catalogue of useful predicates
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/a_1.html">
        10.1. Built-in predicates
@@ -475,14 +538,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/b_0.html">
      11. Two programs for logical conversion
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/b_1.html">
        11.1. From Predicate Logic to clausal logic
@@ -494,14 +560,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/c_0.html">
      12. Answers to selected exercises
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label for="toctree-checkbox-17">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/c_1.html">
        12.1. A brief introduction to clausal logic
@@ -548,29 +617,22 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference external" href="https://simply-logical.space/">
    Simply Logical Organisation
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
    Original Book Home
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -587,21 +649,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -619,7 +681,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -639,20 +701,21 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -663,24 +726,24 @@
   <!--H3: Section 9.1-->
 <div class="section" id="generalisation-and-specialisation">
 <span id="sec-9-1"></span><h1><span class="section-number">9.1. </span>Generalisation and specialisation<a class="headerlink" href="#generalisation-and-specialisation" title="Permalink to this headline">¶</a></h1>
-<p>An <em>example</em> is a ground fact for the predicate of which a definition is to be induced. A <em>positive</em> example is true in the intended interpretation, while a <em>negative</em> example is false. Consequently, the inductive <span class="math notranslate nohighlight">\(Hypothesis\)</span> should be such that for every positive example <em>p</em></p>
+<p>An <em>example</em> is a ground fact for the predicate of which a definition is to be induced. A <em>positive</em> example is true in the intended interpretation, while a <em>negative</em> example is false. Consequently, the inductive <span class="math notranslate nohighlight">\(Hypothesis\)</span> should be such that for every positive example <span class="math notranslate nohighlight">\(p\)</span></p>
 <div class="math notranslate nohighlight">
 \[
 Theory \cup Hypothesis \models p
 \]</div>
-<p>while for every negative example <em>n</em></p>
+<p>while for every negative example <span class="math notranslate nohighlight">\(n\)</span></p>
 <div class="math notranslate nohighlight">
 \[
 Theory \cup Hypothesis \nvDash n
 \]</div>
-<p>We say that <em>p</em> is <em>covered</em> by <span class="math notranslate nohighlight">\(Hypothesis\)</span>, given <span class="math notranslate nohighlight">\(Theory\)</span>. For instance, if <span class="math notranslate nohighlight">\(Hypothesis\)</span> is the standard recursive definition of <code class="docutils literal notranslate"><span class="pre">element/2</span></code>:</p>
+<p>We say that <span class="math notranslate nohighlight">\(p\)</span> is <em>covered</em> by <span class="math notranslate nohighlight">\(Hypothesis\)</span>, given <span class="math notranslate nohighlight">\(Theory\)</span>. For instance, if <span class="math notranslate nohighlight">\(Hypothesis\)</span> is the standard recursive definition of <code class="docutils literal notranslate"><span class="pre">element/2</span></code>:</p>
 <div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="nv">X</span><span class="p">|</span><span class="nv">Z</span><span class="p">]).</span>
 <span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="nv">Y</span><span class="p">|</span><span class="nv">Z</span><span class="p">]):-</span><span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Z</span><span class="p">).</span>
 </pre></div>
 </div>
 <p>then the example <code class="docutils literal notranslate"><span class="pre">element(b,[a,b])</span></code> is covered (with empty <span class="math notranslate nohighlight">\(Theory\)</span>). This can be demonstrated by a simple meta-interpreter for definite clauses. Note that this proof requires <strong>both</strong> of the above clauses. Alternatively, if <code class="docutils literal notranslate"><span class="pre">element(b,[b])</span></code> is also known to be a positive example, we can say that <code class="docutils literal notranslate"><span class="pre">element(b,[a,b])</span></code> is covered by the second, recursive clause alone. The first definition of coverage, which refers to the complete hypothesis, is called <em>intensional</em> coverage, while the second, referring to single clauses plus the rest of the examples, is called <em>extensional</em> coverage. In the induction programs to be developed, we will employ both notions of coverage; for the moment, however, the distinction is immaterial.</p>
 <div class="admonition exercise" id="ex-9-2">
-<p class="admonition-title"><span class="caption-number">Exercise 9.1.1 </span><a class="headerlink" href="#ex-9-2" title="Permalink to this exercise">¶</a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 9.2 </span><a class="headerlink" href="#ex-9-2" title="Permalink to this exercise">¶</a></p>
 <p>Write a predicate <code class="docutils literal notranslate"><span class="pre">covers_ex/3</span></code> which, given a clause, an example, and a list of positive examples, tests whether the clause extensionally covers the example.</p>
 </div>
 <p>If <span class="math notranslate nohighlight">\(Hypothesis1\)</span> covers at least all the examples covered by <span class="math notranslate nohighlight">\(Hypothesis2\)</span>, we say that <span class="math notranslate nohighlight">\(Hypothesis1\)</span> is at least as <em>general</em> as <span class="math notranslate nohighlight">\(Hypothesis2\)</span>, or that <span class="math notranslate nohighlight">\(Hypothesis2\)</span> is at least as <em>specific</em> as <span class="math notranslate nohighlight">\(Hypothesis1\)</span>. From the definition of coverage, one can see that <span class="math notranslate nohighlight">\(Hypothesis2\)</span> must be a logical consequence of <span class="math notranslate nohighlight">\(Hypothesis1\)</span>, given <span class="math notranslate nohighlight">\(Theory\)</span>:</p>
@@ -688,7 +751,7 @@ Theory \cup Hypothesis \nvDash n
 \[
 Theory \cup Hypothesis1 \models Hypothesis2
 \]</div>
-<p>Suppose <em>p</em> is a positive example covered by <span class="math notranslate nohighlight">\(Hypothesis1\)</span> but not by <span class="math notranslate nohighlight">\(Hypothesis2\)</span>. This means that <span class="math notranslate nohighlight">\(Hypothesis2\)</span> is too specific; if it is our current hypothesis, it needs to be <em>generalised</em>, for instance to <span class="math notranslate nohighlight">\(Hypothesis1\)</span>. Similarly, if a hypothesis covers a negative example, it needs to be <em>specialised</em>. Generalisation and specialisation are the basic operations of induction.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(p\)</span> is a positive example covered by <span class="math notranslate nohighlight">\(Hypothesis1\)</span> but not by <span class="math notranslate nohighlight">\(Hypothesis2\)</span>. This means that <span class="math notranslate nohighlight">\(Hypothesis2\)</span> is too specific; if it is our current hypothesis, it needs to be <em>generalised</em>, for instance to <span class="math notranslate nohighlight">\(Hypothesis1\)</span>. Similarly, if a hypothesis covers a negative example, it needs to be <em>specialised</em>. Generalisation and specialisation are the basic operations of induction.</p>
 <p>Although we defined generality between hypotheses being <strong>sets</strong> of clauses, practical approaches to induction usually generalise or specialise single clauses. For instance, the following are clauses of increasing generality:</p>
 <div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="nv">Y</span><span class="p">|</span><span class="nv">Z</span><span class="p">]):-</span><span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Z</span><span class="p">).</span>
 <span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">V</span><span class="p">):-</span><span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Z</span><span class="p">).</span>
@@ -704,7 +767,7 @@ Theory \cup Hypothesis1 \models Hypothesis2
 <span class="nf">ground</span><span class="p">(</span><span class="nv">Term</span><span class="p">):-</span>
     <span class="nf">numbervars</span><span class="p">(</span><span class="nv">Term</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nv">N</span><span class="p">).</span>
 
-<span class="c1">%%% subset/2: see Section 4.1.2 (appendix)</span>
+<span class="c1">%%% subset/2: see Section 10.2 (appendix)</span>
 </pre></div>
 </div>
 <!--Appendix A.2-->
@@ -716,8 +779,8 @@ Theory \cup Hypothesis1 \models Hypothesis2
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">theta_subsumes/2</span></code> succeeds exactly when <code class="docutils literal notranslate"><span class="pre">theta_subsumes1/2</span></code> does, but by means of the double negation unifications are ‘undone’ after the call succeeds.</p>
 <p>Next, we turn to the issue of how to construct generalisations of clauses. First we consider the simpler case of generalising two atoms. Consider the following two ground facts:</p>
-<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">element</span><span class="p">(</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1</span><span class="p">])</span>
-<span class="nf">element</span><span class="p">(</span><span class="s s-Atom">z</span><span class="p">,[</span><span class="s s-Atom">z</span><span class="p">,</span><span class="s s-Atom">y</span><span class="p">,</span><span class="s s-Atom">x</span><span class="p">])</span>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">element</span><span class="p">(</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1</span><span class="p">]).</span>
+<span class="nf">element</span><span class="p">(</span><span class="s s-Atom">z</span><span class="p">,[</span><span class="s s-Atom">z</span><span class="p">,</span><span class="s s-Atom">y</span><span class="p">,</span><span class="s s-Atom">x</span><span class="p">]).</span>
 </pre></div>
 </div>
 <p>The following atom <span class="math notranslate nohighlight">\(\theta\)</span>-subsumes both of them:</p>
@@ -778,12 +841,12 @@ Theory \cup Hypothesis1 \models Hypothesis2
 </div>
 <p>Note that the inverse substitution <code class="docutils literal notranslate"><span class="pre">[2-&gt;X]</span></code> does not indicate which occurrences of <code class="docutils literal notranslate"><span class="pre">2</span></code> should be replaced by <code class="docutils literal notranslate"><span class="pre">X</span></code>. This means that <code class="docutils literal notranslate"><span class="pre">S1</span></code> applied to the first term does not yield <code class="docutils literal notranslate"><span class="pre">T</span></code> (the inverse of <code class="docutils literal notranslate"><span class="pre">S1</span></code> applied to <code class="docutils literal notranslate"><span class="pre">T</span></code> yields the first term, however). Therefore, a proper definition of inverse substitution should include the positions of terms which are to be replaced by variables. We will not elaborate this any further here.</p>
 <p>The construction of the <span class="math notranslate nohighlight">\(\theta\)</span>-LGG of two clauses makes use of, but is more complicated than anti-unification. The basic difference with anti-unification is that the body of a clause is logically speaking unordered, whereas subterms within a term have fixed positions. Therefore, we cannot just compare the literals occurring at the same position in the respective bodies, but should consider all pairs of literals, one from each body. For instance, the <span class="math notranslate nohighlight">\(\theta\)</span>-LGG of the following two clauses</p>
-<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">c</span><span class="p">,[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]):-</span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">c</span><span class="p">,[</span><span class="s s-Atom">c</span><span class="p">])</span>
-<span class="nf">element</span><span class="p">(</span><span class="s s-Atom">d</span><span class="p">,[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">d</span><span class="p">]):-</span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">d</span><span class="p">,[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">d</span><span class="p">]),</span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">d</span><span class="p">,[</span><span class="s s-Atom">d</span><span class="p">])</span>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">c</span><span class="p">,[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">]):-</span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">c</span><span class="p">,[</span><span class="s s-Atom">c</span><span class="p">]).</span>
+<span class="nf">element</span><span class="p">(</span><span class="s s-Atom">d</span><span class="p">,[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">d</span><span class="p">]):-</span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">d</span><span class="p">,[</span><span class="s s-Atom">c</span><span class="p">,</span><span class="s s-Atom">d</span><span class="p">]),</span><span class="nf">element</span><span class="p">(</span><span class="s s-Atom">d</span><span class="p">,[</span><span class="s s-Atom">d</span><span class="p">]).</span>
 </pre></div>
 </div>
 <p>is the clause</p>
-<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">|</span><span class="nv">Y</span><span class="p">]):-</span><span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="s s-Atom">c</span><span class="p">|</span><span class="nv">Y</span><span class="p">]),</span><span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="nv">X</span><span class="p">])</span>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">c</span><span class="p">|</span><span class="nv">Y</span><span class="p">]):-</span><span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="s s-Atom">c</span><span class="p">|</span><span class="nv">Y</span><span class="p">]),</span><span class="nf">element</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="nv">X</span><span class="p">]).</span>
 </pre></div>
 </div>
 <p>The head of this clause is simply obtained by anti-unifying the heads of the original clauses, and the body is obtained by anti-unification of <code class="docutils literal notranslate"><span class="pre">element(c,[c])</span></code> and <code class="docutils literal notranslate"><span class="pre">element(d,[c,d])</span></code>, giving <code class="docutils literal notranslate"><span class="pre">element(X,[c|Y])</span></code>, and anti-unification of <code class="docutils literal notranslate"><span class="pre">element(c,[c])</span></code> and <code class="docutils literal notranslate"><span class="pre">element(d,[d])</span></code>, giving <code class="docutils literal notranslate"><span class="pre">element(X,[X])</span></code>.</p>
@@ -844,24 +907,24 @@ Theory \cup Hypothesis1 \models Hypothesis2
 <p>Technically, this grounds the variables with <code class="docutils literal notranslate"><span class="pre">numbervars/3</span></code> which was mentioned earlier.</p>
 </div>
 <div class="admonition exercise" id="ex-9-3">
-<p class="admonition-title"><span class="caption-number">Exercise 9.1.2 </span><a class="headerlink" href="#ex-9-3" title="Permalink to this exercise">¶</a><a href="../appendices/c_9.html#sol-9-3" class="solution-link" title="Go to the solution"></a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 9.3 </span><a class="headerlink" href="#ex-9-3" title="Permalink to this exercise">¶</a><a href="../appendices/c_9.html#sol-9-3" class="solution-link" title="Go to the solution"></a></p>
 <p>Determine the <span class="math notranslate nohighlight">\(\theta\)</span>-LGG of the following two clauses:</p>
-<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">reverse</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]):-</span><span class="nf">reverse</span><span class="p">([</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-<span class="nf">reverse</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">],[],[</span><span class="s s-Atom">a</span><span class="p">]):-</span><span class="nf">reverse</span><span class="p">([],[</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">])</span>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">reverse</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]):-</span><span class="nf">reverse</span><span class="p">([</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]).</span>
+<span class="nf">reverse</span><span class="p">([</span><span class="s s-Atom">a</span><span class="p">],[],[</span><span class="s s-Atom">a</span><span class="p">]):-</span><span class="nf">reverse</span><span class="p">([],[</span><span class="s s-Atom">a</span><span class="p">],[</span><span class="s s-Atom">a</span><span class="p">]).</span>
 </pre></div>
 </div>
 </div>
 <div class="admonition infobox" id="infobox-0">
 <p class="admonition-title">The relation between <span class="math notranslate nohighlight">\(\theta\)</span>-subsumption and logical consequence<a class="headerlink" href="#infobox-0" title="Permalink to this infobox">¶</a></p>
 <p>If <code class="docutils literal notranslate"><span class="pre">Clause1</span></code> <span class="math notranslate nohighlight">\(\theta\)</span>-subsumes <code class="docutils literal notranslate"><span class="pre">Clause2</span></code>, then also <code class="docutils literal notranslate"><span class="pre">Clause1</span></code> <span class="math notranslate nohighlight">\(\models\)</span> <code class="docutils literal notranslate"><span class="pre">Clause2</span></code>. The reverse, however, is not always true. Consider the following two clauses:</p>
-<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">list</span><span class="p">([</span><span class="nv">V</span><span class="p">|</span><span class="nv">W</span><span class="p">]):-</span><span class="nf">list</span><span class="p">(</span><span class="nv">W</span><span class="p">)</span>
-<span class="nf">list</span><span class="p">([</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">|</span><span class="nv">Z</span><span class="p">]):-</span><span class="nf">list</span><span class="p">(</span><span class="nv">Z</span><span class="p">)</span>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">list</span><span class="p">([</span><span class="nv">V</span><span class="p">|</span><span class="nv">W</span><span class="p">]):-</span><span class="nf">list</span><span class="p">(</span><span class="nv">W</span><span class="p">).</span>
+<span class="nf">list</span><span class="p">([</span><span class="nv">X</span><span class="p">,</span><span class="nv">Y</span><span class="p">|</span><span class="nv">Z</span><span class="p">]):-</span><span class="nf">list</span><span class="p">(</span><span class="nv">Z</span><span class="p">).</span>
 </pre></div>
 </div>
 <p>Given <code class="docutils literal notranslate"><span class="pre">list([])</span></code>, the first clause covers lists of arbitrary length, while the second covers only lists of even length. All lists covered by the second clause are also covered by the first, which is therefore more general. However, there is no substitution that can be applied to the first clause to yield the second (such a substitution should map <code class="docutils literal notranslate"><span class="pre">W</span></code> both to <code class="docutils literal notranslate"><span class="pre">[Y|Z]</span></code> and to <code class="docutils literal notranslate"><span class="pre">Z</span></code>, which is impossible).</p>
 <p>It may seem that <span class="math notranslate nohighlight">\(\models\)</span> provides a better notion of generality than <span class="math notranslate nohighlight">\(\theta\)</span>-subsumption. However, such a semantic definition of generality introduces two problems. One is that it does not suggest a simple procedure to generalise clauses, as <span class="math notranslate nohighlight">\(\theta\)</span>-subsumption does. The second problem is that LGG’s under logical consequence are not always unique. Consider the two clauses</p>
-<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">list</span><span class="p">([</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">|</span><span class="nv">C</span><span class="p">]):-</span><span class="nf">list</span><span class="p">(</span><span class="nv">C</span><span class="p">)</span>
-<span class="nf">list</span><span class="p">([</span><span class="nv">P</span><span class="p">,</span><span class="nv">Q</span><span class="p">,</span><span class="nv">R</span><span class="p">|</span><span class="nv">S</span><span class="p">]):-</span><span class="nf">list</span><span class="p">(</span><span class="nv">S</span><span class="p">)</span>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">list</span><span class="p">([</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">|</span><span class="nv">C</span><span class="p">]):-</span><span class="nf">list</span><span class="p">(</span><span class="nv">C</span><span class="p">).</span>
+<span class="nf">list</span><span class="p">([</span><span class="nv">P</span><span class="p">,</span><span class="nv">Q</span><span class="p">,</span><span class="nv">R</span><span class="p">|</span><span class="nv">S</span><span class="p">]):-</span><span class="nf">list</span><span class="p">(</span><span class="nv">S</span><span class="p">).</span>
 </pre></div>
 </div>
 <p>Under logical consequence, these clauses have two LGG’s: one is <code class="docutils literal notranslate"><span class="pre">list([X|Y]):-list(Y)</span></code>, and the other is <code class="docutils literal notranslate"><span class="pre">list([X,Y|Z]):-list(V)</span></code>. Under <span class="math notranslate nohighlight">\(\theta\)</span>-subsumption, only the latter is an LGG. Note that the first LGG looks in fact more plausible!</p>
@@ -895,17 +958,28 @@ Theory \cup Hypothesis1 \models Hypothesis2
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="9.0.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">9. </span>Inductive reasoning</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="9.2.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9.2. </span>Bottom-up induction</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="9.0.html" title="previous page"><span class="section-number">9. </span>Inductive reasoning</a>
-    <a class='right-next' id="next-link" href="9.2.html" title="next page"><span class="section-number">9.2. </span>Bottom-up induction</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -914,7 +988,7 @@ Theory \cup Hypothesis1 \models Hypothesis2
         
             &copy; Copyright 2015–2021.<br/>
           <div class="extra_footer">
-            This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer.
+            <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
 
           </div>
       </p>
@@ -925,21 +999,8 @@ Theory \cup Hypothesis1 \models Hypothesis2
 
       </div>
     </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-112595762-2', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>

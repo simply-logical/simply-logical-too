@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2.1. Propositional clausal logic &#8212; Simply Logical:&lt;br&gt;Intelligent Reasoning by Example</title>
     
-  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -38,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -50,10 +47,10 @@
     <script src="../../../_static/lpn.js"></script>
     <script src="../../../_static/jquery-ui.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -65,14 +62,27 @@
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="2.2. Relational clausal logic" href="2.2.html" />
     <link rel="prev" title="2. Clausal logic and resolution: theoretical backgrounds" href="2.0.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -81,51 +91,68 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../../index.html">
-  
-  <img src="../../../_static/SL.svg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Simply Logical:<br>Intelligent Reasoning by Example</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical:<br>Intelligent Reasoning by Example</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../simply-logical.html">
    Simply Logical
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../0_preface/_preface.html">
-   Preface
+   Preface to the online edition
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../0_preface/glossary.html">
      Glossary
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="_part_i.html">
    I. Logic and Logic Programming
   </a>
-  <ul class="current collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="1.0.html">
      1. A brief introduction to clausal logic
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="1.1.html">
        1.1. Answering queries
@@ -147,14 +174,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 current active collapsible-parent">
+   <li class="toctree-l2 current active has-children">
     <a class="reference internal" href="2.0.html">
      2. Clausal logic and resolution: theoretical backgrounds
     </a>
-    <ul class="current collapse-ul">
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
        2.1. Propositional clausal logic
@@ -186,14 +216,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="3.0.html">
      3. Logic Programming and Prolog
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="3.1.html">
        3.1. SLD-resolution
@@ -245,23 +278,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../2_part_ii/_part_ii.html">
    II. Reasoning with structured knowledge
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../2_part_ii/4.0.html">
      4. Representing structured knowledge
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../2_part_ii/4.1.html">
        4.1. Trees as terms
@@ -283,14 +322,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../2_part_ii/5.0.html">
      5. Searching graphs
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../2_part_ii/5.1.html">
        5.1. A general search procedure
@@ -317,14 +359,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../2_part_ii/6.0.html">
      6. Informed search
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../2_part_ii/6.1.html">
        6.1. Best-first search
@@ -346,23 +391,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../3_part_iii/_part_iii.html">
    III. Advanced reasoning techniques
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/7.0.html">
      7. Reasoning with natural language
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/7.1.html">
        7.1. Grammars and parsing
@@ -384,14 +435,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/8.0.html">
      8. Reasoning with incomplete information
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/8.1.html">
        8.1. Default reasoning
@@ -418,14 +472,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/9.0.html">
      9. Inductive reasoning
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/9.1.html">
        9.1. Generalisation and specialisation
@@ -447,23 +504,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../appendices/_appendices.html">
    Appendices
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/a_0.html">
      10. A catalogue of useful predicates
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/a_1.html">
        10.1. Built-in predicates
@@ -475,14 +538,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/b_0.html">
      11. Two programs for logical conversion
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/b_1.html">
        11.1. From Predicate Logic to clausal logic
@@ -494,14 +560,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/c_0.html">
      12. Answers to selected exercises
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label for="toctree-checkbox-17">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/c_1.html">
        12.1. A brief introduction to clausal logic
@@ -548,29 +617,22 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference external" href="https://simply-logical.space/">
    Simply Logical Organisation
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
    Original Book Home
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -587,21 +649,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -619,7 +681,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -639,25 +701,25 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#syntax">
    Syntax
@@ -680,8 +742,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -696,12 +758,16 @@
 <div class="section" id="syntax">
 <h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
 <p>Propositions are abstractly denoted by <em>atoms</em>, which are single words starting with a lowercase character. For instance, <code class="docutils literal notranslate"><span class="pre">married</span></code> is an atom denoting the proposition ‘he/she is married’; similarly, <code class="docutils literal notranslate"><span class="pre">man</span></code> denotes the proposition ‘he is a man’. Using the special symbols ‘<code class="docutils literal notranslate"><span class="pre">:-</span></code>‘ (<strong>if</strong>), ‘<code class="docutils literal notranslate"><span class="pre">;</span></code>’ (<strong>or</strong>) and ‘<code class="docutils literal notranslate"><span class="pre">,</span></code>’ (<strong>and</strong>), we can combine atoms to form <em>clauses</em>. For instance,</p>
-<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">married</span><span class="p">;</span><span class="s s-Atom">bachelor</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">adult</span>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">married</span><span class="p">;</span><span class="s s-Atom">bachelor</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">adult</span><span class="p">.</span>
 </pre></div>
 </div>
 <p>is a clause, with intended meaning: ‘somebody is married <strong>or</strong> a bachelor <strong>if</strong> he is a man <strong>and</strong> an adult’<a class="footnote-reference brackets" href="#id3" id="id1">1</a>. The part to the left of the if-symbol ‘<code class="docutils literal notranslate"><span class="pre">:-</span></code>‘ is called the <em>head</em> of the clause, and the right part is called the <em>body</em> of the clause. The head of a clause is always a disjunction (<strong>or</strong>) of atoms, and the body of a clause is always a conjunction (<strong>and</strong>).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This example, which is used throughout <a class="reference internal" href="2.0.html#ch-2"><span class="std std-numref">Chapters 2</span></a> and <a class="reference internal" href="3.0.html#ch-3"><span class="std std-numref">3</span></a>, assumes that bachelors are unmarried men. While this is till logically correct, it is perhaps time to look for a slightly less dated running example…</p>
+</div>
 <div class="admonition exercise" id="ex-2-1">
-<p class="admonition-title"><span class="caption-number">Exercise 2.1.1 </span><a class="headerlink" href="#ex-2-1" title="Permalink to this exercise">¶</a><a href="../appendices/c_2.html#sol-2-1" class="solution-link" title="Go to the solution"></a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 2.1 </span><a class="headerlink" href="#ex-2-1" title="Permalink to this exercise">¶</a><a href="../appendices/c_2.html#sol-2-1" class="solution-link" title="Go to the solution"></a></p>
 <p>Translate the following statements into clauses, using the atoms <code class="docutils literal notranslate"><span class="pre">person</span></code>, <code class="docutils literal notranslate"><span class="pre">sad</span></code> and <code class="docutils literal notranslate"><span class="pre">happy</span></code>:</p>
 <!--roman list-->
 <ol class="simple">
@@ -738,7 +804,7 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
 <p>To summarise: a clause is assigned the truth value <strong>true</strong> in an interpretation, if and only if at least one of the following conditions is true: (<em>a</em>) at least one atom in the body of the clause is <strong>false</strong> in the interpretation (cases 3 and 4), or (<em>b</em>) at least one atom in the head of the clause is <strong>true</strong> in the interpretation (cases 1 and 3). If a clause is <strong>true</strong> in an interpretation, we say that the interpretation is a <em>model</em> for the clause. An interpretation is a model for a program if it is a model for each clause in the program. For example, the above program has the following models: <span class="math notranslate nohighlight">\(\emptyset\)</span> (the empty model, assigning <strong>false</strong> to every atom), { <code class="docutils literal notranslate"><span class="pre">woman</span></code>, <code class="docutils literal notranslate"><span class="pre">human</span></code> }, { <code class="docutils literal notranslate"><span class="pre">man</span></code>, <code class="docutils literal notranslate"><span class="pre">human</span></code> }, and { <code class="docutils literal notranslate"><span class="pre">woman</span></code>, <code class="docutils literal notranslate"><span class="pre">man</span></code>, <code class="docutils literal notranslate"><span class="pre">human</span></code> }. Since there are eight possible interpretations for a Herbrand base with three atoms, this means that the program contains enough information to rule out half of these.</p>
 <p>Adding more clauses to the program means restricting its set of models. For instance, if we add the clause <code class="docutils literal notranslate"><span class="pre">woman</span></code> (a clause with an empty body) to the program, we rule out the first and third model, which leaves us with the models { <code class="docutils literal notranslate"><span class="pre">woman</span></code>, <code class="docutils literal notranslate"><span class="pre">human</span></code> }, and { <code class="docutils literal notranslate"><span class="pre">woman</span></code>, <code class="docutils literal notranslate"><span class="pre">man</span></code>, <code class="docutils literal notranslate"><span class="pre">human</span></code> }. Note that in both of these models, <code class="docutils literal notranslate"><span class="pre">human</span></code> is <strong>true</strong>. We say that <code class="docutils literal notranslate"><span class="pre">human</span></code> is a logical consequence of the set of clauses. In general, a clause <span class="math notranslate nohighlight">\(C\)</span> is a <em>logical consequence</em> of a program <span class="math notranslate nohighlight">\(P\)</span> if every model of the program is also a model of the clause; we write <span class="math notranslate nohighlight">\(P \models C\)</span>.</p>
 <div class="admonition exercise" id="ex-2-2">
-<p class="admonition-title"><span class="caption-number">Exercise 2.1.2 </span><a class="headerlink" href="#ex-2-2" title="Permalink to this exercise">¶</a><a href="../appendices/c_2.html#sol-2-2" class="solution-link" title="Go to the solution"></a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 2.2 </span><a class="headerlink" href="#ex-2-2" title="Permalink to this exercise">¶</a><a href="../appendices/c_2.html#sol-2-2" class="solution-link" title="Go to the solution"></a></p>
 <p>Given the program</p>
 <div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">married</span><span class="p">;</span><span class="s s-Atom">bachelor</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">adult</span><span class="p">.</span>
 <span class="s s-Atom">man</span><span class="p">.</span>
@@ -755,11 +821,11 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
 </ol>
 </div>
 <p>Of the two remaining models, obviously { <code class="docutils literal notranslate"><span class="pre">woman</span></code>, <code class="docutils literal notranslate"><span class="pre">human</span></code> } is the intended one; but the program does not yet contain enough information to distinguish it from the non-intended model { <code class="docutils literal notranslate"><span class="pre">woman</span></code>, <code class="docutils literal notranslate"><span class="pre">man</span></code>, <code class="docutils literal notranslate"><span class="pre">human</span></code> }. We can add yet another clause, to make sure that the atom <code class="docutils literal notranslate"><span class="pre">man</span></code> is mapped to <strong>false</strong>. For instance, we could add</p>
-<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="p">:-</span><span class="s s-Atom">man</span>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="p">:-</span><span class="s s-Atom">man</span><span class="p">.</span>
 </pre></div>
 </div>
 <p>(it is not a man) or</p>
-<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="p">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">woman</span>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="p">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">woman</span><span class="p">.</span>
 </pre></div>
 </div>
 <p>(nobody is both a man and a woman). However, explicitly stating everything that is false in the intended model is not always feasible. Consider, for example, an airline database consulted by travel agencies: we simply want to say that if a particular flight (i.e., a combination of plane, origin, destination, date and time) is not listed in the database, then it does not exist, instead of listing all the dates that a particular plane does <strong>not</strong> fly from Amsterdam to London.</p>
@@ -789,17 +855,17 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
 </div>
 <p>This simple program has no less than 26 models, each of which needs to be considered if we want to check whether a clause is a logical consequence of it.</p>
 <div class="admonition exercise" id="ex-2-3">
-<p class="admonition-title"><span class="caption-number">Exercise 2.1.3 </span><a class="headerlink" href="#ex-2-3" title="Permalink to this exercise">¶</a><a href="../appendices/c_2.html#sol-2-3" class="solution-link" title="Go to the solution"></a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 2.3 </span><a class="headerlink" href="#ex-2-3" title="Permalink to this exercise">¶</a><a href="../appendices/c_2.html#sol-2-3" class="solution-link" title="Go to the solution"></a></p>
 <p>Write down the six Herbrand interpretations that are not models of the program.</p>
 </div>
 <p>The following clause is a logical consequence of this program:</p>
-<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">has_wife</span><span class="p">;</span><span class="s s-Atom">bachelor</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">adult</span>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">has_wife</span><span class="p">;</span><span class="s s-Atom">bachelor</span><span class="o">:-</span><span class="s s-Atom">man</span><span class="p">,</span><span class="s s-Atom">adult</span><span class="p">.</span>
 </pre></div>
 </div>
-<p>By means of resolution, it can be produced in a single step. This step represents the following line of reasoning: ‘if someone is a man and an adult, then he is a bachelor or married; but if he is married, he has a wife; therefore, if someone is a man and an adult, then he is a bachelor or he has a wife’. In this argument, the two clauses in the program are related to each other by means of the atom <code class="docutils literal notranslate"><span class="pre">married</span></code>, which occurs in the head of the first clause (a positive literal) and in the body of the second (a negative literal). The derived clause, which is called the <em>resolvent</em>, consists of all the literals of the two input clauses, except <code class="docutils literal notranslate"><span class="pre">married</span></code> (the literal <em>resolved upon</em>). The negative literal <code class="docutils literal notranslate"><span class="pre">man</span></code>, which occurs in both input clauses, appears only once in the derived clause. This process is depicted in <a class="reference internal" href="#fig-2-1"><span class="std std-numref">Figure 2.1.1</span></a>.</p>
+<p>By means of resolution, it can be produced in a single step. This step represents the following line of reasoning: ‘if someone is a man and an adult, then he is a bachelor or married; but if he is married, he has a wife; therefore, if someone is a man and an adult, then he is a bachelor or he has a wife’. In this argument, the two clauses in the program are related to each other by means of the atom <code class="docutils literal notranslate"><span class="pre">married</span></code>, which occurs in the head of the first clause (a positive literal) and in the body of the second (a negative literal). The derived clause, which is called the <em>resolvent</em>, consists of all the literals of the two input clauses, except <code class="docutils literal notranslate"><span class="pre">married</span></code> (the literal <em>resolved upon</em>). The negative literal <code class="docutils literal notranslate"><span class="pre">man</span></code>, which occurs in both input clauses, appears only once in the derived clause. This process is depicted in <a class="reference internal" href="#fig-2-1"><span class="std std-numref">Figure 2.1</span></a>.</p>
 <div class="figure align-default" id="fig-2-1">
 <a class="reference internal image-reference" href="../../../_images/image016.svg"><img alt="../../../_images/image016.svg" src="../../../_images/image016.svg" width="75%" /></a>
-<p class="caption"><span class="caption-number">Figure 2.1.1 </span><span class="caption-text">A resolution step.</span><a class="headerlink" href="#fig-2-1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Figure 2.1 </span><span class="caption-text">A resolution step.</span><a class="headerlink" href="#fig-2-1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Resolution is most easily understood when applied to definite clauses. Consider the following program:</p>
 <div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">square</span><span class="o">:-</span><span class="s s-Atom">rectangle</span><span class="p">,</span><span class="s s-Atom">equal_sides</span><span class="p">.</span>
@@ -807,17 +873,17 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
 </pre></div>
 </div>
 <p>Applying resolution yields the clause</p>
-<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">square</span><span class="o">:-</span><span class="s s-Atom">parallelogram</span><span class="p">,</span><span class="s s-Atom">right_angles</span><span class="p">,</span><span class="s s-Atom">equal_sides</span>
+<div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">square</span><span class="o">:-</span><span class="s s-Atom">parallelogram</span><span class="p">,</span><span class="s s-Atom">right_angles</span><span class="p">,</span><span class="s s-Atom">equal_sides</span><span class="p">.</span>
 </pre></div>
 </div>
-<p>That is, the atom <code class="docutils literal notranslate"><span class="pre">rectangle</span></code> in the body of the first clause is replaced by the body of the second clause (which has <code class="docutils literal notranslate"><span class="pre">rectangle</span></code> as its head). This process is also referred to as <em>unfolding</em> the second clause into the first one (<a class="reference internal" href="#fig-2-2"><span class="std std-numref">Figure 2.1.2</span></a>).</p>
+<p>That is, the atom <code class="docutils literal notranslate"><span class="pre">rectangle</span></code> in the body of the first clause is replaced by the body of the second clause (which has <code class="docutils literal notranslate"><span class="pre">rectangle</span></code> as its head). This process is also referred to as <em>unfolding</em> the second clause into the first one (<a class="reference internal" href="#fig-2-2"><span class="std std-numref">Figure 2.2</span></a>).</p>
 <div class="figure align-default" id="fig-2-2">
 <a class="reference internal image-reference" href="../../../_images/image018.svg"><img alt="../../../_images/image018.svg" src="../../../_images/image018.svg" width="90%" /></a>
-<p class="caption"><span class="caption-number">Figure 2.1.2 </span><span class="caption-text">Resolution with definite clauses.</span><a class="headerlink" href="#fig-2-2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Figure 2.2 </span><span class="caption-text">Resolution with definite clauses.</span><a class="headerlink" href="#fig-2-2" title="Permalink to this image">¶</a></p>
 </div>
 <p>A resolvent resulting from one resolution step can be used as input for the next. A <em>proof</em> or <em>derivation</em> of a clause <span class="math notranslate nohighlight">\(C\)</span> from a program <span class="math notranslate nohighlight">\(P\)</span> is a sequence of clauses such that each clause is either in the program, or the resolvent of two previous clauses, and the last clause is <span class="math notranslate nohighlight">\(C\)</span>. If there is a proof of <span class="math notranslate nohighlight">\(C\)</span> from <span class="math notranslate nohighlight">\(P\)</span>, we write <span class="math notranslate nohighlight">\(P \vdash C\)</span>.</p>
 <div class="admonition exercise" id="ex-2-4">
-<p class="admonition-title"><span class="caption-number">Exercise 2.1.4 </span><a class="headerlink" href="#ex-2-4" title="Permalink to this exercise">¶</a><a href="../appendices/c_2.html#sol-2-4" class="solution-link" title="Go to the solution"></a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 2.4 </span><a class="headerlink" href="#ex-2-4" title="Permalink to this exercise">¶</a><a href="../appendices/c_2.html#sol-2-4" class="solution-link" title="Go to the solution"></a></p>
 <p>Give a derivation of <code class="docutils literal notranslate"><span class="pre">friendly</span></code> from the following program:</p>
 <div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">happy</span><span class="p">;</span><span class="s s-Atom">friendly</span><span class="o">:-</span><span class="s s-Atom">teacher</span><span class="p">.</span>
 <span class="s s-Atom">friendly</span><span class="o">:-</span><span class="s s-Atom">teacher</span><span class="p">,</span><span class="s s-Atom">happy</span><span class="p">.</span>
@@ -836,7 +902,7 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
 <p>Resolution provides a way to check this condition. Note that, since an inconsistent set of clauses doesn’t have a model, it trivially satisfies the condition that any model of it is a model of any other clause; therefore, an inconsistent set of clauses has every possible clause as its logical consequence. In particular, the absurd or <em>empty</em> clause, denoted by <span class="math notranslate nohighlight">\(\square\)</span><a class="footnote-reference brackets" href="#id4" id="id2">2</a>, is a logical consequence of an inconsistent set of clauses. Conversely, if <span class="math notranslate nohighlight">\(\square\)</span> is a logical consequence of a set of clauses, we know it must be inconsistent. Now, resolution is complete in the sense that <em>if P set of clauses is inconsistent, it is always possible to derive <span class="math notranslate nohighlight">\(\square\)</span> by resolution</em>. Since resolution is sound, we already know that if we can derive <span class="math notranslate nohighlight">\(\square\)</span> then the input clauses must be inconsistent. So we conclude: <code class="docutils literal notranslate"><span class="pre">a</span></code> is a logical consequence of <span class="math notranslate nohighlight">\(P\)</span> if, and only if, the empty clause can be deduced by resolution from <span class="math notranslate nohighlight">\(P\)</span> augmented with <code class="docutils literal notranslate"><span class="pre">:-a</span></code>. This process is called <em>proof by refutation</em>, and resolution is called <em>refutation complete</em>.</p>
 <p>This proof method can be generalised to the case where <span class="math notranslate nohighlight">\(B\)</span> is not a single atom. For instance, let us check by resolution that <code class="docutils literal notranslate"><span class="pre">a:-a</span></code> is a tautology, i.e. a logical consequence of any set of clauses. Logically speaking, this clause is equivalent to ‘<code class="docutils literal notranslate"><span class="pre">a</span></code> <strong>or not</strong> <code class="docutils literal notranslate"><span class="pre">a</span></code>’, the negation of which is ‘<strong>not</strong> <code class="docutils literal notranslate"><span class="pre">a</span></code> <strong>and</strong> <code class="docutils literal notranslate"><span class="pre">a</span></code>’, which is represented by two separate clauses <code class="docutils literal notranslate"><span class="pre">:-a</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span></code>. Since we can derive the empty clause from these two clauses in a single resolution step without using any other clauses, we have in fact proved that <code class="docutils literal notranslate"><span class="pre">a:-a</span></code> is a logical consequence of an empty set of clauses, hence a tautology.</p>
 <div class="admonition exercise" id="ex-2-5">
-<p class="admonition-title"><span class="caption-number">Exercise 2.1.5 </span><a class="headerlink" href="#ex-2-5" title="Permalink to this exercise">¶</a><a href="../appendices/c_2.html#sol-2-5" class="solution-link" title="Go to the solution"></a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 2.5 </span><a class="headerlink" href="#ex-2-5" title="Permalink to this exercise">¶</a><a href="../appendices/c_2.html#sol-2-5" class="solution-link" title="Go to the solution"></a></p>
 <p>Prove by refutation that <code class="docutils literal notranslate"><span class="pre">friendly:-has_friends</span></code> is a logical consequence of the following clauses:</p>
 <div class="highlight-pProlog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">happy</span><span class="o">:-</span><span class="s s-Atom">has_friends</span><span class="p">.</span>
 <span class="s s-Atom">friendly</span><span class="o">:-</span><span class="s s-Atom">happy</span><span class="p">.</span>
@@ -879,17 +945,28 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="2.0.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Clausal logic and resolution: theoretical backgrounds</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2.2.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Relational clausal logic</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="2.0.html" title="previous page"><span class="section-number">2. </span>Clausal logic and resolution: theoretical backgrounds</a>
-    <a class='right-next' id="next-link" href="2.2.html" title="next page"><span class="section-number">2.2. </span>Relational clausal logic</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -898,7 +975,7 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
         
             &copy; Copyright 2015–2021.<br/>
           <div class="extra_footer">
-            This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer.
+            <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
 
           </div>
       </p>
@@ -909,21 +986,8 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
 
       </div>
     </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-112595762-2', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>

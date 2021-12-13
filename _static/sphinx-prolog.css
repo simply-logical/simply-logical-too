@@ -13,6 +13,12 @@
   color:#ffc107;
   float: right;
   font-family: Font Awesome\ 5 Free;
+  text-decoration: none;
+  opacity:.3;
+}
+.admonition.exercise .admonition-title .solution-link:hover {
+  background-color: transparent;
+  opacity:1 !important;
 }
 
 /*Exercise solution directive*/
@@ -30,13 +36,21 @@
   color:#28a745;
   float: right;
   font-family: Font Awesome\ 5 Free;
+  text-decoration: none;
+  opacity:.3;
+}
+.admonition.solution .admonition-title .exercise-link:hover {
+  background-color: transparent;
+  opacity:1 !important;
 }
 
 /*Highlight the hyper-link marker when hovering over the "title" of
  *infoboxes, exercises and solutions.*/
 main.bd-content #main-content div.admonition.infobox p.admonition-title:hover a.headerlink,
 main.bd-content #main-content div.admonition.exercise p.admonition-title:hover a.headerlink,
-main.bd-content #main-content div.admonition.solution p.admonition-title:hover a.headerlink {
+main.bd-content #main-content div.admonition.exercise p.admonition-title:hover a.solution-link,
+main.bd-content #main-content div.admonition.solution p.admonition-title:hover a.headerlink,
+main.bd-content #main-content div.admonition.solution p.admonition-title:hover a.exercise-link {
   opacity:.5;
 }
 

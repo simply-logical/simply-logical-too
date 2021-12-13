@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>6.1. Best-first search &#8212; Simply Logical:&lt;br&gt;Intelligent Reasoning by Example</title>
     
-  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -38,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -50,10 +47,8 @@
     <script src="../../../_static/lpn.js"></script>
     <script src="../../../_static/jquery-ui.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -65,14 +60,27 @@
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="6.2. Optimal best-first search" href="6.2.html" />
     <link rel="prev" title="6. Informed search" href="6.0.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -81,51 +89,68 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../../index.html">
-  
-  <img src="../../../_static/SL.svg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Simply Logical:<br>Intelligent Reasoning by Example</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical:<br>Intelligent Reasoning by Example</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../simply-logical.html">
    Simply Logical
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../0_preface/_preface.html">
-   Preface
+   Preface to the online edition
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../0_preface/glossary.html">
      Glossary
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../1_part_i/_part_i.html">
    I. Logic and Logic Programming
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/1.0.html">
      1. A brief introduction to clausal logic
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/1.1.html">
        1.1. Answering queries
@@ -147,14 +172,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/2.0.html">
      2. Clausal logic and resolution: theoretical backgrounds
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/2.1.html">
        2.1. Propositional clausal logic
@@ -186,14 +214,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/3.0.html">
      3. Logic Programming and Prolog
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/3.1.html">
        3.1. SLD-resolution
@@ -245,23 +276,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="_part_ii.html">
    II. Reasoning with structured knowledge
   </a>
-  <ul class="current collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="4.0.html">
      4. Representing structured knowledge
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="4.1.html">
        4.1. Trees as terms
@@ -283,14 +320,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="5.0.html">
      5. Searching graphs
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="5.1.html">
        5.1. A general search procedure
@@ -317,14 +357,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 current active collapsible-parent">
+   <li class="toctree-l2 current active has-children">
     <a class="reference internal" href="6.0.html">
      6. Informed search
     </a>
-    <ul class="current collapse-ul">
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
        6.1. Best-first search
@@ -346,23 +389,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../3_part_iii/_part_iii.html">
    III. Advanced reasoning techniques
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/7.0.html">
      7. Reasoning with natural language
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/7.1.html">
        7.1. Grammars and parsing
@@ -384,14 +433,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/8.0.html">
      8. Reasoning with incomplete information
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/8.1.html">
        8.1. Default reasoning
@@ -418,14 +470,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/9.0.html">
      9. Inductive reasoning
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/9.1.html">
        9.1. Generalisation and specialisation
@@ -447,23 +502,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../appendices/_appendices.html">
    Appendices
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/a_0.html">
      10. A catalogue of useful predicates
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/a_1.html">
        10.1. Built-in predicates
@@ -475,14 +536,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/b_0.html">
      11. Two programs for logical conversion
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/b_1.html">
        11.1. From Predicate Logic to clausal logic
@@ -494,14 +558,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/c_0.html">
      12. Answers to selected exercises
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label for="toctree-checkbox-17">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/c_1.html">
        12.1. A brief introduction to clausal logic
@@ -548,29 +615,22 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference external" href="https://simply-logical.space/">
    Simply Logical Organisation
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
    Original Book Home
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -587,21 +647,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -619,7 +679,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -639,20 +699,21 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -698,20 +759,20 @@
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">add_bstf/3</span></code> operates by inserting the new children one by one in the current agenda. Note that if the list of children were already sorted, it could more efficiently be <strong>merged</strong> with the current agenda.</p>
 <div class="admonition exercise" id="ex-6-1">
-<p class="admonition-title"><span class="caption-number">Exercise 6.1.1 </span><a class="headerlink" href="#ex-6-1" title="Permalink to this exercise">¶</a><a href="../appendices/c_6.html#sol-6-1" class="solution-link" title="Go to the solution"></a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 6.1 </span><a class="headerlink" href="#ex-6-1" title="Permalink to this exercise">¶</a><a href="../appendices/c_6.html#sol-6-1" class="solution-link" title="Go to the solution"></a></p>
 <p>Suppose the call <code class="docutils literal notranslate"><span class="pre">children(Current,Children)</span></code> results in an ordered list of children. Write a predicate <code class="docutils literal notranslate"><span class="pre">merge/3</span></code> which directly merges this list with the current agenda.</p>
 </div>
+<p>As an application of best-first search, consider the following puzzle. We have a board consisting of seven consecutive squares, three black tiles and three white tiles, initially placed on the board as in <a class="reference internal" href="#fig-6-1"><span class="std std-numref">Figure 6.1</span></a>. The goal is to move the tiles in such a way that the black tiles are to the right of the white tiles (the position of the empty square is immaterial). Each move consists of moving one tile into the empty square, which is allowed if there are at most two other tiles in between. The cost of such a move is 1 if there are no tiles in between, and equals the number of tiles jumped over otherwise.</p>
 <div class="figure align-default" id="fig-6-1">
-<a class="reference internal image-reference" href="../../../_images/image0161.svg"><img alt="../../../_images/image0161.svg" src="../../../_images/image0161.svg" width="100%" /></a>
-<p class="caption"><span class="caption-number">Figure 6.1.1 </span><span class="caption-text">Initial board position.</span><a class="headerlink" href="#fig-6-1" title="Permalink to this image">¶</a></p>
+<a class="reference internal image-reference" href="../../../_images/image0161.svg"><img alt="../../../_images/image0161.svg" src="../../../_images/image0161.svg" width="40%" /></a>
+<p class="caption"><span class="caption-number">Figure 6.1 </span><span class="caption-text">Initial board position.</span><a class="headerlink" href="#fig-6-1" title="Permalink to this image">¶</a></p>
 </div>
-<p>As an application of best-first search, consider the following puzzle. We have a board consisting of seven consecutive squares, three black tiles and three white tiles, initially placed on the board as in <a class="reference internal" href="#fig-6-1"><span class="std std-numref">Figure 6.1.1</span></a>. The goal is to move the tiles in such a way that the black tiles are to the right of the white tiles (the position of the empty square is immaterial). Each move consists of moving one tile into the empty square, which is allowed if there are at most two other tiles in between. The cost of such a move is 1 if there are no tiles in between, and equals the number of tiles jumped over otherwise.</p>
 <div class="admonition infobox" id="infobox-0">
 <p class="admonition-title">When not to use lists<a class="headerlink" href="#infobox-0" title="Permalink to this infobox">¶</a></p>
 <!--section 1.3-->
 <p>Recall (<a class="reference internal" href="../1_part_i/1.3.html#sec-1-3"><span class="std std-numref">Section 1.3</span></a>) that <code class="docutils literal notranslate"><span class="pre">[b,b,b,e,w,w,w]</span></code> is an alternative notation for the term <code class="docutils literal notranslate"><span class="pre">.(b,.(b,.(b,.(e,.(w,.(w,.(w,[])))))))</span></code>. This term contains, besides the seven constants in the linear notation, one additional constant (‘<code class="docutils literal notranslate"><span class="pre">[]</span></code>’) and seven functors (‘<code class="docutils literal notranslate"><span class="pre">.</span></code>’), each with two arguments. In contrast, a ‘flat’ term <code class="docutils literal notranslate"><span class="pre">p(b,b,b,e,w,w,w)</span></code> contains only one additional functor, with seven arguments. Recursive datastructures like lists are useful if the number of items to be stored is not fixed, but they require significantly more storage space. In general, if the number of items is fixed, a non-recursive datastructure is preferred as far as memory is concerned. Given a term <code class="docutils literal notranslate"><span class="pre">T</span></code> holding the items, the call <code class="docutils literal notranslate"><span class="pre">arg(N,T,A)</span></code> retrieves the <code class="docutils literal notranslate"><span class="pre">N</span></code>th argument <code class="docutils literal notranslate"><span class="pre">A</span></code>. However, <code class="docutils literal notranslate"><span class="pre">arg/3</span></code> requires <code class="docutils literal notranslate"><span class="pre">N</span></code> to be instantiated, and cannot be used to generate all arguments on backtracking. Therefore, lists are sometimes used even if the nature of the data is non-recursive.</p>
 </div>
-<p>This puzzle defines a search space, in which nodes are board positions and arcs are single moves. We choose a simple list representation for board positions: e.g. <code class="docutils literal notranslate"><span class="pre">[b,b,b,e,w,w,w]</span></code> represents the starting position of <a class="reference internal" href="#fig-6-1"><span class="std std-numref">Figure 6.1.1</span></a>. The following predicates examine and manipulate board positions:</p>
+<p>This puzzle defines a search space, in which nodes are board positions and arcs are single moves. We choose a simple list representation for board positions: e.g. <code class="docutils literal notranslate"><span class="pre">[b,b,b,e,w,w,w]</span></code> represents the starting position of <a class="reference internal" href="#fig-6-1"><span class="std std-numref">Figure 6.1</span></a>. The following predicates examine and manipulate board positions:</p>
 <div class="extract swish highlight highlight-Prolog notranslate" id="swish-get-tile">
 <pre class="literal-block source swish" id="swish-get-tile-code">
 <span></span><span class="c1">% get_tile(P,N,T) &lt;- pos. P contains tile T at square N</span>
@@ -813,10 +874,36 @@
 </div>
 <p>by determining the length of the list that is returned by the second-order predicate <code class="docutils literal notranslate"><span class="pre">findall/3</span></code>.</p>
 <div class="admonition exercise" id="ex-6-2">
-<p class="admonition-title"><span class="caption-number">Exercise 6.1.2 </span><a class="headerlink" href="#ex-6-2" title="Permalink to this exercise">¶</a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 6.2 </span><a class="headerlink" href="#ex-6-2" title="Permalink to this exercise">¶</a></p>
 <p>Rewrite <code class="docutils literal notranslate"><span class="pre">bLeftOfw/2</span></code> such that it uses only first-order predicates.</p>
 </div>
 <p>The program writes every move it considers on the screen, together with its heuristic evaluation. For instance, the query</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span><span class="nf">tiles</span><span class="p">(</span><span class="nv">M</span><span class="p">,</span><span class="nv">C</span><span class="p">).</span>
+</pre></div>
+</div>
+<p>results in the following output:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">9</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">9</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">8</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">6</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">4</span>
+<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">4</span>
+<span class="p">[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span>
+<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
+<span class="nv">M</span> <span class="o">=</span> <span class="p">[[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],</span>
+     <span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]]</span>
+<span class="nv">C</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+</div>
+<p>Since the only moves that are considered are those that are on the final solution path, there is no backtracking. This seems to suggest that the heuristic works quite well. On the other hand, the first few moves seem a bit awkward: in particular, the first and the fourth move are relatively expensive.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Try it out in SWISH:</p>
 <div class="extract swish highlight highlight-Prolog notranslate" id="swish-tiles">
 <pre class="literal-block source swish" id="swish-tiles-code" source-text-end="
 % tiles(M,C) &lt;- moves M lead to a goal position at cost C
@@ -916,29 +1003,7 @@ setof0(_X,_Q,[]).">
 <span class="cm">?-tiles(M,C).</span>
 <span class="cm">*/</span></div>
 </pre></div>
-<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="s s-Atom">?-</span><span class="nf">tiles</span><span class="p">(</span><span class="nv">M</span><span class="p">,</span><span class="nv">C</span><span class="p">).</span>
-</pre></div>
 </div>
-<p>results in the following output:</p>
-<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">9</span>
-<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">9</span>
-<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">8</span>
-<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span>
-<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span>
-<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">6</span>
-<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">4</span>
-<span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">4</span>
-<span class="p">[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span>
-<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span>
-<span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
-<span class="nv">M</span> <span class="o">=</span> <span class="p">[[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],</span>
-     <span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],</span>
-     <span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],</span>
-     <span class="p">[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">],[</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">]]</span>
-<span class="nv">C</span> <span class="o">=</span> <span class="mi">15</span>
-</pre></div>
-</div>
-<p>Since the only moves that are considered are those that are on the final solution path, there is no backtracking. This seems to suggest that the heuristic works quite well. On the other hand, the first few moves seem a bit awkward: in particular, the first and the fourth move are relatively expensive.</p>
 <p>Let’s try another heuristic, which counts the number of tiles out of place: a wrong tile on the first or seventh square gives 3, on the second or sixth square 2, and on the third or fifth square 1.</p>
 <div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">eval</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="nv">Value</span><span class="p">):-</span>
     <span class="nf">outOfPlace</span><span class="p">(</span><span class="nv">Pos</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nv">Value</span><span class="p">).</span>
@@ -975,7 +1040,11 @@ setof0(_X,_Q,[]).">
 <p>We observe a couple of differences with the previous heuristic. First of all, there is backtracking: the first, second and fourth moves are not pursued any further. Furthermore, the solution found requires two moves less, and is also cheaper.</p>
 <div class="figure align-default" id="fig-6-2">
 <a class="reference internal image-reference" href="../../../_images/image0181.svg"><img alt="../../../_images/image0181.svg" src="../../../_images/image0181.svg" width="100%" /></a>
-<p class="caption"><span class="caption-number">Figure 6.1.2 </span><span class="caption-text">Solutions found for different heuristics.</span><a class="headerlink" href="#fig-6-2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Figure 6.2 </span><span class="caption-text">Solutions found for different heuristics.</span><a class="headerlink" href="#fig-6-2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can easily try this out in the SWISH box above, the <code class="docutils literal notranslate"><span class="pre">outOfPlace/4</span></code> call is already there in <code class="docutils literal notranslate"><span class="pre">eval/2</span></code>, but commented out.</p>
 </div>
 <p>This improvement seems to suggest that an increased punishment for wrongly placed tiles might lead to an even cheaper solution. For instance, we could increase the punishment to 4, 3 and 2, respectively, by adapting the predicate <code class="docutils literal notranslate"><span class="pre">outOfPlace/4</span></code> (try it!). This leads to the following sequence of moves:</p>
 <div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">18</span>
@@ -999,7 +1068,7 @@ setof0(_X,_Q,[]).">
 <span class="nv">C</span> <span class="o">=</span> <span class="mi">15</span>
 </pre></div>
 </div>
-<p>Obviously, this heuristic works no better than the previous two: it does not find an optimal solution, and it investigates more moves than the first heuristic. In <a class="reference internal" href="#fig-6-2"><span class="std std-numref">Figure 6.1.2</span></a>, the solutions found by the three heuristics are compared. In the next section, we will investigate the conditions under which a heuristic is guaranteed to find an optimal solution.</p>
+<p>Obviously, this heuristic works no better than the previous two: it does not find an optimal solution, and it investigates more moves than the first heuristic. In <a class="reference internal" href="#fig-6-2"><span class="std std-numref">Figure 6.2</span></a>, the solutions found by the three heuristics are compared. In the next section, we will investigate the conditions under which a heuristic is guaranteed to find an optimal solution.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -1027,17 +1096,28 @@ setof0(_X,_Q,[]).">
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="6.0.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Informed search</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="6.2.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6.2. </span>Optimal best-first search</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="6.0.html" title="previous page"><span class="section-number">6. </span>Informed search</a>
-    <a class='right-next' id="next-link" href="6.2.html" title="next page"><span class="section-number">6.2. </span>Optimal best-first search</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -1046,7 +1126,7 @@ setof0(_X,_Q,[]).">
         
             &copy; Copyright 2015–2021.<br/>
           <div class="extra_footer">
-            This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer.
+            <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
 
           </div>
       </p>
@@ -1057,21 +1137,8 @@ setof0(_X,_Q,[]).">
 
       </div>
     </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-112595762-2', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>

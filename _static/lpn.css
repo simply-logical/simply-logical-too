@@ -76,7 +76,7 @@ div.load {
   right: 5px;
   width: 32px;
   height: 32px;
-  background-image: url("lpn-run.png");
+  background-image: url("./lpn-run.png");
   background-repeat: none;
   background-size: 100%;
 }
@@ -89,7 +89,7 @@ div.source.swish div.load,
 div.query.swish div.load,
 div.answer.swish div.load,
 div.open-prolog.swish div.load {
-  background-image: url("lpn-close.png");
+  background-image: url("./lpn-close.png");
 }
 
 div.ui-resizable-s {
@@ -159,7 +159,7 @@ div.content {
 
 #close {
   position:absolute;
-  background:url(lpn-close.png) 0 0 no-repeat;
+  background:url("./lpn-close.png") 0 0 no-repeat;
   width:24px;
   height:27px;
   display:block;

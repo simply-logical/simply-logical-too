@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>6.2. Optimal best-first search &#8212; Simply Logical:&lt;br&gt;Intelligent Reasoning by Example</title>
     
-  <link rel="stylesheet" href="../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -38,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -50,10 +47,10 @@
     <script src="../../../_static/lpn.js"></script>
     <script src="../../../_static/jquery-ui.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -65,14 +62,27 @@
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="6.3. Non-exhaustive informed search" href="6.3.html" />
     <link rel="prev" title="6.1. Best-first search" href="6.1.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
 
-
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-112595762-2', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -81,51 +91,68 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../../index.html">
-  
-  <img src="../../../_static/SL.svg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Simply Logical:<br>Intelligent Reasoning by Example</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/SL.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Simply Logical:<br>Intelligent Reasoning by Example</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../simply-logical.html">
    Simply Logical
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../0_preface/_preface.html">
-   Preface
+   Preface to the online edition
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../0_preface/glossary.html">
      Glossary
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../1_part_i/_part_i.html">
    I. Logic and Logic Programming
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/1.0.html">
      1. A brief introduction to clausal logic
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/1.1.html">
        1.1. Answering queries
@@ -147,14 +174,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/2.0.html">
      2. Clausal logic and resolution: theoretical backgrounds
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/2.1.html">
        2.1. Propositional clausal logic
@@ -186,14 +216,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../1_part_i/3.0.html">
      3. Logic Programming and Prolog
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../1_part_i/3.1.html">
        3.1. SLD-resolution
@@ -245,23 +278,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="_part_ii.html">
    II. Reasoning with structured knowledge
   </a>
-  <ul class="current collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="4.0.html">
      4. Representing structured knowledge
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="4.1.html">
        4.1. Trees as terms
@@ -283,14 +322,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="5.0.html">
      5. Searching graphs
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="5.1.html">
        5.1. A general search procedure
@@ -317,14 +359,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 current active collapsible-parent">
+   <li class="toctree-l2 current active has-children">
     <a class="reference internal" href="6.0.html">
      6. Informed search
     </a>
-    <ul class="current collapse-ul">
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
      <li class="toctree-l3">
       <a class="reference internal" href="6.1.html">
        6.1. Best-first search
@@ -346,23 +391,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../3_part_iii/_part_iii.html">
    III. Advanced reasoning techniques
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/7.0.html">
      7. Reasoning with natural language
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/7.1.html">
        7.1. Grammars and parsing
@@ -384,14 +435,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/8.0.html">
      8. Reasoning with incomplete information
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/8.1.html">
        8.1. Default reasoning
@@ -418,14 +472,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../3_part_iii/9.0.html">
      9. Inductive reasoning
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../3_part_iii/9.1.html">
        9.1. Generalisation and specialisation
@@ -447,23 +504,29 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../appendices/_appendices.html">
    Appendices
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2 collapsible-parent">
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/a_0.html">
      10. A catalogue of useful predicates
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+    <label for="toctree-checkbox-15">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/a_1.html">
        10.1. Built-in predicates
@@ -475,14 +538,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/b_0.html">
      11. Two programs for logical conversion
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/b_1.html">
        11.1. From Predicate Logic to clausal logic
@@ -494,14 +560,17 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
-   <li class="toctree-l2 collapsible-parent">
+   <li class="toctree-l2 has-children">
     <a class="reference internal" href="../appendices/c_0.html">
      12. Answers to selected exercises
     </a>
-    <ul class="collapse-ul">
+    <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+    <label for="toctree-checkbox-17">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../appendices/c_1.html">
        12.1. A brief introduction to clausal logic
@@ -548,29 +617,22 @@
       </a>
      </li>
     </ul>
-    <i class="fas fa-chevron-down">
-    </i>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference external" href="https://simply-logical.space/">
    Simply Logical Organisation
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference external" href="https://www.cs.bris.ac.uk/~flach/SimplyLogical.html">
    Original Book Home
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -587,21 +649,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -619,7 +681,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -639,20 +701,21 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
+        </div>
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -671,22 +734,22 @@ f(n) = g(n) + h(n)
 <p>Here, <span class="math notranslate nohighlight">\(h(n)\)</span> is the heuristic estimate of the cost of reaching a goal node from node <span class="math notranslate nohighlight">\(n\)</span>, as it was introduced before. <span class="math notranslate nohighlight">\(g(n)\)</span> is the actual cost of reaching <span class="math notranslate nohighlight">\(n\)</span> from the starting node. Their sum <span class="math notranslate nohighlight">\(f(n)\)</span> is used to order the nodes on the agenda.</p>
 <p>A best-first search algorithm which uses such an evaluation function <span class="math notranslate nohighlight">\(f\)</span> to estimate the total cost of a path is called an <em>A algorithm</em>. An A algorithm is complete, since the depth count <span class="math notranslate nohighlight">\(g(n)\)</span> will prevent search from getting trapped in an infinite path. In effect, the depth count will give the search strategy more of a breadth-first flavour. Indeed, breadth-first search is a special case of an A algorithm, with <span class="math notranslate nohighlight">\(h(n) = 0\)</span> for every node <span class="math notranslate nohighlight">\(n\)</span>. A disadvantage of A algorithms is the decreased efficiency associated with this breadth-first flavour.</p>
 <div class="admonition exercise" id="ex-6-3">
-<p class="admonition-title"><span class="caption-number">Exercise 6.2.1 </span><a class="headerlink" href="#ex-6-3" title="Permalink to this exercise">¶</a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 6.3 </span><a class="headerlink" href="#ex-6-3" title="Permalink to this exercise">¶</a></p>
 <p>Change the <code class="docutils literal notranslate"><span class="pre">tiles</span></code> program into an A algorithm, by associating with each move the <span class="math notranslate nohighlight">\(g\)</span>-value of the position reached by that move (i.e. the cost of the path leading to that position, instead of the cost of the last move). Demonstrate the decreased efficiency of the search.</p>
 </div>
 <p>Breadth-first search is not only complete, it is also optimal: it always returns a shortest solution path<a class="footnote-reference brackets" href="#id2" id="id1">1</a>. Do A algorithms inherit this property from breadth-first search? Obviously, this depends on the function <span class="math notranslate nohighlight">\(h\)</span>: if a node <span class="math notranslate nohighlight">\(n_1\)</span> on the cheapest path gets an <span class="math notranslate nohighlight">\(h\)</span>-estimate that is too high, other nodes will be tried instead, and a solution along a non-optimal path may be found first. We say that the heuristic was too <em>pessimistic</em> regarding <span class="math notranslate nohighlight">\(n_1\)</span>. Conversely, a heuristic which never assigns a value to a node that is higher than the actual cost of reaching a goal state from that node is called <em>optimistic</em>.</p>
 <p>For instance, consider the first heuristic for the puzzle in the previous section, which counts for each white tile the number of black tiles to the left of it. Suppose one black tile has <span class="math notranslate nohighlight">\(w\)</span> white tiles to its right, which adds <span class="math notranslate nohighlight">\(w\)</span> to the heuristic value for that position. In order to reach a goal position, the black tile has to jump over some of the white tiles, while the remaining white tiles have to jump over the black tile; this has a cost of at least <span class="math notranslate nohighlight">\(w\)</span>. Therefore, this heuristic is optimistic. The second heuristic, calculating a weighted sum of tiles out of place, is also optimistic. For instance, suppose that a black tile is at the first square, then there are three white tiles to its right, over which it must jump. Analogously, if it is on the second square, then there are at least two white tiles to jump over. In contrast, the weights used in the third heuristic are too high.</p>
 <div class="admonition exercise" id="ex-6-4">
-<p class="admonition-title"><span class="caption-number">Exercise 6.2.2 </span><a class="headerlink" href="#ex-6-4" title="Permalink to this exercise">¶</a><a href="../appendices/c_6.html#sol-6-4" class="solution-link" title="Go to the solution"></a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 6.4 </span><a class="headerlink" href="#ex-6-4" title="Permalink to this exercise">¶</a><a href="../appendices/c_6.html#sol-6-4" class="solution-link" title="Go to the solution"></a></p>
 <p>Find a position for which the third heuristic is too pessimistic.</p>
 </div>
 <p>It is possible to prove the following important result: <em>an A algorithm with an optimistic heuristic h always results in an optimal solution</em>. The resulting algorithm is called <em>A*</em> (A star); both A* search and optimistic heuristics are said to be <em>admissible</em>. This should not be mistaken to suggest that better heuristics are more optimistic! On the contrary, a good heuristic is as pessimistic as possible, without becoming non-admissible. In general, if <span class="math notranslate nohighlight">\(h_1(n) \geq h_2(n)\)</span> for any node <span class="math notranslate nohighlight">\(n\)</span>, then we call heuristic <span class="math notranslate nohighlight">\(h_1\)</span> at least as <em>informed</em> as <span class="math notranslate nohighlight">\(h_2\)</span>. It can be shown that a more informed heuristic indeed searches a smaller part of the search space.</p>
 <div class="figure align-default" id="fig-6-3">
-<a class="reference internal image-reference" href="../../../_images/image0201.svg"><img alt="../../../_images/image0201.svg" src="../../../_images/image0201.svg" width="30%" /></a>
-<p class="caption"><span class="caption-number">Figure 6.2.1 </span><span class="caption-text">A heuristic which is not monotonic.</span><a class="headerlink" href="#fig-6-3" title="Permalink to this image">¶</a></p>
+<a class="reference internal image-reference" href="../../../_images/image0201.svg"><img alt="../../../_images/image0201.svg" src="../../../_images/image0201.svg" width="35%" /></a>
+<p class="caption"><span class="caption-number">Figure 6.3 </span><span class="caption-text">A heuristic which is not monotonic.</span><a class="headerlink" href="#fig-6-3" title="Permalink to this image">¶</a></p>
 </div>
-<p>As a small example, consider the search space in <a class="reference internal" href="#fig-6-3"><span class="std std-numref">Figure 6.2.1</span></a>. The <span class="math notranslate nohighlight">\(h\)</span>-values for each node are as indicated; the cost per arc is 1. The heuristic is optimistic, so A* search will return the shortest path <em>start-r-s-goal</em>. However, this path is not found immediately: since both <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span> have a lower <span class="math notranslate nohighlight">\(f\)</span>-value than <span class="math notranslate nohighlight">\(r\)</span>, they are investigated first. After <span class="math notranslate nohighlight">\(q\)</span> has been investigated, <span class="math notranslate nohighlight">\(s\)</span> is put on the agenda with <span class="math notranslate nohighlight">\(f\)</span>-value <span class="math notranslate nohighlight">\(3+1=4\)</span>. Since <span class="math notranslate nohighlight">\(r\)</span> has a lower <span class="math notranslate nohighlight">\(f\)</span>-value of <span class="math notranslate nohighlight">\(3\)</span>, it is the next one to be investigated. Now <span class="math notranslate nohighlight">\(s\)</span> will again be added to the agenda, this time with <span class="math notranslate nohighlight">\(f\)</span>-value <span class="math notranslate nohighlight">\(2+1=3\)</span>! In fact, it is this latter <span class="math notranslate nohighlight">\(s\)</span> which, being on the optimal path, leads to the goal.</p>
-<p>Thus, although admissible search leads to optimal solutions, it is not necessarily the case that every node on an optimal path is immediately reached along that optimal path. In <a class="reference internal" href="#fig-6-3"><span class="std std-numref">Figure 6.2.1</span></a>, this is caused by ‘local pessimism’ of the heuristic, which estimates the cost of moving from <em>start</em> to <span class="math notranslate nohighlight">\(p\)</span> as <span class="math notranslate nohighlight">\(3-1=2\)</span>, while the actual cost is <span class="math notranslate nohighlight">\(1\)</span>. Indeed, if <span class="math notranslate nohighlight">\(p\)</span> would have an <span class="math notranslate nohighlight">\(h\)</span>-value of <span class="math notranslate nohighlight">\(2\)</span>, <span class="math notranslate nohighlight">\(s\)</span> would have been reached the first time along the shortest path. This is true in general: if the heuristic estimates the cost of moving from one node to another optimistically, then any node is reached along the cheapest path first. This property is called <em>monotonicity</em>, since one can show that the <span class="math notranslate nohighlight">\(f\)</span>-values are monotonically non-decreasing along a path.</p>
+<p>As a small example, consider the search space in <a class="reference internal" href="#fig-6-3"><span class="std std-numref">Figure 6.3</span></a>. The <span class="math notranslate nohighlight">\(h\)</span>-values for each node are as indicated; the cost per arc is 1. The heuristic is optimistic, so A* search will return the shortest path <em>start-r-s-goal</em>. However, this path is not found immediately: since both <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span> have a lower <span class="math notranslate nohighlight">\(f\)</span>-value than <span class="math notranslate nohighlight">\(r\)</span>, they are investigated first. After <span class="math notranslate nohighlight">\(q\)</span> has been investigated, <span class="math notranslate nohighlight">\(s\)</span> is put on the agenda with <span class="math notranslate nohighlight">\(f\)</span>-value <span class="math notranslate nohighlight">\(3+1=4\)</span>. Since <span class="math notranslate nohighlight">\(r\)</span> has a lower <span class="math notranslate nohighlight">\(f\)</span>-value of <span class="math notranslate nohighlight">\(3\)</span>, it is the next one to be investigated. Now <span class="math notranslate nohighlight">\(s\)</span> will again be added to the agenda, this time with <span class="math notranslate nohighlight">\(f\)</span>-value <span class="math notranslate nohighlight">\(2+1=3\)</span>! In fact, it is this latter <span class="math notranslate nohighlight">\(s\)</span> which, being on the optimal path, leads to the goal.</p>
+<p>Thus, although admissible search leads to optimal solutions, it is not necessarily the case that every node on an optimal path is immediately reached along that optimal path. In <a class="reference internal" href="#fig-6-3"><span class="std std-numref">Figure 6.3</span></a>, this is caused by ‘local pessimism’ of the heuristic, which estimates the cost of moving from <em>start</em> to <span class="math notranslate nohighlight">\(p\)</span> as <span class="math notranslate nohighlight">\(3-1=2\)</span>, while the actual cost is <span class="math notranslate nohighlight">\(1\)</span>. Indeed, if <span class="math notranslate nohighlight">\(p\)</span> would have an <span class="math notranslate nohighlight">\(h\)</span>-value of <span class="math notranslate nohighlight">\(2\)</span>, <span class="math notranslate nohighlight">\(s\)</span> would have been reached the first time along the shortest path. This is true in general: if the heuristic estimates the cost of moving from one node to another optimistically, then any node is reached along the cheapest path first. This property is called <em>monotonicity</em>, since one can show that the <span class="math notranslate nohighlight">\(f\)</span>-values are monotonically non-decreasing along a path.</p>
 <p>The first heuristic of the previous section is monotonic, while the second is not. This can be concluded from the following two evaluations:</p>
 <div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">9</span>
 <span class="p">[</span><span class="s s-Atom">e</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">,</span><span class="s s-Atom">b</span><span class="p">,</span><span class="s s-Atom">w</span><span class="p">]</span><span class="o">-</span><span class="mi">7</span>
@@ -694,7 +757,7 @@ f(n) = g(n) + h(n)
 </div>
 <p>The heuristic estimates the cost of this move as <span class="math notranslate nohighlight">\(9-7=2\)</span>, while the actual cost is <span class="math notranslate nohighlight">\(1\)</span>. Since monotonicity implies admissibility, the third heuristic is not monotonic either.</p>
 <div class="admonition exercise" id="ex-6-5">
-<p class="admonition-title"><span class="caption-number">Exercise 6.2.3 </span><a class="headerlink" href="#ex-6-5" title="Permalink to this exercise">¶</a></p>
+<p class="admonition-title"><span class="caption-number">Exercise 6.5 </span><a class="headerlink" href="#ex-6-5" title="Permalink to this exercise">¶</a></p>
 <p>Implement a Prolog meta-interpreter which employs an A search algorithm. Use <span class="math notranslate nohighlight">\(h(R) = |R|\)</span> (the number of literals in resolvent <span class="math notranslate nohighlight">\(R\)</span>) as heuristic. Is this heuristic admissible and monotonic?</p>
 </div>
 <hr class="footnotes docutils" />
@@ -727,17 +790,28 @@ f(n) = g(n) + h(n)
 
               </div>
               
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="6.1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6.1. </span>Best-first search</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="6.3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6.3. </span>Non-exhaustive informed search</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="6.1.html" title="previous page"><span class="section-number">6.1. </span>Best-first search</a>
-    <a class='right-next' id="next-link" href="6.3.html" title="next page"><span class="section-number">6.3. </span>Non-exhaustive informed search</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -746,7 +820,7 @@ f(n) = g(n) + h(n)
         
             &copy; Copyright 2015–2021.<br/>
           <div class="extra_footer">
-            This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer.
+            <p> This work is licenced under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licence</a>. </p> <p> This book discusses methods to implement intelligent reasoning by means of Prolog programs. The book is written from the shared viewpoints of Computational Logic, which aims at automating various kinds of reasoning, and Artificial Intelligence, which seeks to implement aspects of intelligent behaviour on a computer. </p>
 
           </div>
       </p>
@@ -757,21 +831,8 @@ f(n) = g(n) + h(n)
 
       </div>
     </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-    
-  <script src="../../../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-112595762-2', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>
