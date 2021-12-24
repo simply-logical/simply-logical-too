@@ -766,72 +766,7 @@
 <p>It is interesting to trace the literal <code class="docutils literal notranslate"><span class="pre">append(B,C,D)</span></code> back to its origin: it is the anti-unification of the facts <code class="docutils literal notranslate"><span class="pre">append([],[],[])</span></code> and <code class="docutils literal notranslate"><span class="pre">append([2],[3,4],[2,3,4])</span></code>. These are exactly the ground bodies of the last clause, if we unify its head with the two original examples!</p>
 <p>The program for computing the RLGG of two examples is given below. It is a slight modification of the program for computing <span class="math notranslate nohighlight">\(\theta\)</span>-LGG’s, given in the previous section. After the head of the clause is constructed, the variables in the head are passed on to the predicate <code class="docutils literal notranslate"><span class="pre">rlgg_bodies/9</span></code>, which will only construct literals of which all the variables occur in the head.</p>
 <div class="extract swish highlight highlight-Prolog notranslate" id="swish-rlgg">
-<pre class="literal-block source swish" id="swish-rlgg-code" source-text-end="
-var_remove_one(X,[Y|Ys],Ys):-
-    X == Y.  % syntactic identity
-var_remove_one(X,[Y|Ys],[Y|Zs]):-
-    var_remove_one(X,Ys,Zs).
-
-var_proper_subset([],Ys):-
-    Ys \= [].
-var_proper_subset([X|Xs],Ys):-
-    var_remove_one(X,Ys,Zs),
-    var_proper_subset(Xs,Zs)." source-text-start=":-op(600,xfx,'-&gt;'). % operator for inverse substitution
-
-% anti-unification with inverse subst.s and accumulators
-anti_unify(Term1,Term2,Term1,S1,S1,S2,S2):-
-    Term1 == Term2,!.                         % same terms
-anti_unify(Term1,Term2,V,S1,S1,S2,S2):-
-    subs_lookup(S1,S2,Term1,Term2,V),!.       % already substituted
-anti_unify(Term1,Term2,Term,S10,S1,S20,S2):-
-    nonvar(Term1),nonvar(Term2),
-    functor(Term1,F,N),functor(Term2,F,N),!,  % same
-    functor(Term,F,N),                        % functor
-    anti_unify_args(N,Term1,Term2,Term,S10,S1,S20,S2).
-anti_unify(T1,T2,V,S10,[T1-&gt;V|S10],S20,[T2-&gt;V|S20]).
-
-anti_unify_args(0,_Term1,_Term2,_Term,S1,S1,S2,S2).
-anti_unify_args(N,Term1,Term2,Term,S10,S1,S20,S2):-
-    N&gt;0,N1 is N-1,
-    arg(N,Term1,Arg1),
-    arg(N,Term2,Arg2),
-    arg(N,Term,Arg),
-    anti_unify(Arg1,Arg2,Arg,S10,S11,S20,S21),
-    anti_unify_args(N1,Term1,Term2,Term,S11,S1,S21,S2).
-
-subs_lookup([T1-&gt;V|_Subs1],[T2-&gt;V|_Subs2],Term1,Term2,V):-
-    T1 == Term1,
-    T2 == Term2,!.  % no alternative solutions needed
-subs_lookup([_S1|Subs1],[_S2|Subs2],Term1,Term2,V):-
-    subs_lookup(Subs1,Subs2,Term1,Term2,V).
-
-:-op(900,fy,not).
-
-% theta_lgg(C1,C2,C) &lt;- C is the  θ-LGG of clause C1 and C2
-theta_lgg((H1:-B1),(H2:-B2),(H:-B)):-
-    anti_unify(H1,H2,H,[],S10,[],S20),             % heads
-    theta_lgg_bodies(B1,B2,[],B,S10,_S1,S20,_S2).  % bodies
-
-% select literal from first body...
-theta_lgg_bodies([],_B2,B,B,S1,S1,S2,S2).
-theta_lgg_bodies([L|B1],B2,B0,B,S10,S1,S20,S2):-
-    theta_lgg_literal(L,B2,B0,B00,S10,S11,S20,S21),
-    theta_lgg_bodies(B1,B2,B00,B,S11,S1,S21,S2).
-
-% and one from second body
-theta_lgg_literal(_L1,[],B,B,S1,S1,S2,S2).
-theta_lgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2):-
-    same_predicate(L1,L2),anti_unify(L1,L2,L,S10,S11,S20,S21),
-    theta_lgg_literal(L1,B2,[L|B0],B,S11,S1,S21,S2).
-theta_lgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2):-
-    not same_predicate(L1,L2),
-    theta_lgg_literal(L1,B2,B0,B,S10,S1,S20,S2).
-
-% same_predicate(L1,L2) &lt;- literals L1 and L2 have
-%                          the same predicate and arity
-same_predicate(L1,L2):-functor(L1,P,N),functor(L2,P,N).
-
-">
+<pre class="literal-block source swish" id="swish-rlgg-code" prolog-file="https://too.simply-logical.space/_sources/prolog_build_files/rlgg-merged.pl">
 <span></span><span class="c1">% rlgg(E1,E2,M,C) &lt;- C is RLGG of E1 and E2 relative to M</span>
 <span class="nf">rlgg</span><span class="p">(</span><span class="nv">E1</span><span class="p">,</span><span class="nv">E2</span><span class="p">,</span><span class="nv">M</span><span class="p">,(</span><span class="nv">H</span><span class="p">:-</span><span class="nv">B</span><span class="p">)):-</span>
     <span class="nf">anti_unify</span><span class="p">(</span><span class="nv">E1</span><span class="p">,</span><span class="nv">E2</span><span class="p">,</span><span class="nv">H</span><span class="p">,[],</span><span class="nv">S10</span><span class="p">,[],</span><span class="nv">S20</span><span class="p">),</span>
@@ -855,15 +790,7 @@ same_predicate(L1,L2):-functor(L1,P,N),functor(L2,P,N).
 <span class="nf">rlgg_literal</span><span class="p">(</span><span class="nv">L1</span><span class="p">,[</span><span class="nv">L2</span><span class="p">|</span><span class="nv">B2</span><span class="p">],</span><span class="nv">B0</span><span class="p">,</span><span class="nv">B</span><span class="p">,</span><span class="nv">S10</span><span class="p">,</span><span class="nv">S1</span><span class="p">,</span><span class="nv">S20</span><span class="p">,</span><span class="nv">S2</span><span class="p">,</span><span class="nv">V</span><span class="p">):-</span>
     <span class="nf">rlgg_literal</span><span class="p">(</span><span class="nv">L1</span><span class="p">,</span><span class="nv">B2</span><span class="p">,</span><span class="nv">B0</span><span class="p">,</span><span class="nv">B</span><span class="p">,</span><span class="nv">S10</span><span class="p">,</span><span class="nv">S1</span><span class="p">,</span><span class="nv">S20</span><span class="p">,</span><span class="nv">S2</span><span class="p">,</span><span class="nv">V</span><span class="p">).</span>
 
-<span class="c1">%%% var_… uses == rather than unification (Section 10.2 (appendix))</span><div class="hide-examples">
-
-<span class="cm">/** &lt;examples&gt;</span>
-<span class="cm">?-rlgg( append([1,2],[3,4],[1,2,3,4]),</span>
-<span class="cm">        append([a],[],[a]),</span>
-<span class="cm">        [append([1,2],[3,4],[1,2,3,4]), append([a],[],[a])</span>
-<span class="cm">         append([],[],[]),              append([2],[3,4],[2,3,4])],</span>
-<span class="cm">       C)</span>
-<span class="cm">*/</span></div>
+<span class="c1">%%% var_… uses == rather than unification (Section 10.2 (appendix))</span>
 </pre></div>
 <!--Appendix A.2-->
 <p>For simplicity, the body of the RLGG thus constructed is a <strong>list</strong> of literals rather than a conjunction.</p>
