@@ -8,6 +8,14 @@
 
 :-op(400,fy,not).	% negation
 
+transform(Formula,Clauses):-
+   rewrite_implications(Formula,F1),
+   negations_inside(F1,F2),
+   prenex_normal_form(F2,F3),
+   skolemise(F3,F4),
+   conjunctive_normal_form(F4,F5),
+   clausal_form(F5,Clauses).
+
 % rewrite_implications(F1,F2) <-	F2 is a predicate logic formula 
 %                                without implications, logically equivalent to F1
 rewrite_implications(A,A):-	% base case
@@ -152,14 +160,6 @@ logical_symbol(&).
 logical_symbol(v).
 logical_symbol(exists).
 logical_symbol(forall).
-
-
-pl( forall(Y,exists(X,mother_of(X,Y))) &
-   -forall(Z,exists(W,woman(Z) => mother_of(Z,W)))).
-pl( forall(X,exists(Y,mouse(X) => tail_of(Y,X)))).
-pl( forall(X,exists(Y,loves(X,Y)) &
-    forall(Z,loves(Y,Z)))).
-pl( forall(X,forall(Y,exists(Z,number(X) & number(Y) => maximum(Z,X,Y))))).
 /*End ~source text start~*/
 
 complete(Program,Comp):-
@@ -194,27 +194,6 @@ transform(F,CP).
 
 /*Begin ~source text end~*/
 %%% B.2  Predicate Completion %%%
-
-:-consult(transform).
-
-complete(Program,Comp):-
-    separate_definitions(Program,Definitions),
-    complete_definitions(Definitions,CompDefs,Heads),
-    handle_undefined(Program,Heads,CompDefs,Comp).
-
-separate_definitions([],[]).
-separate_definitions([([Head]:-Body)|Clauses],[[([Head]:-Body)|Def]|Defs]):-
-    get_definition(Clauses,Head,Def,Rest),
-    separate_definitions(Rest,Defs).
-    
-get_definition([],_Head,[],[]).
-get_definition([([H]:-B)|Clauses],Head,[([H]:-B)|Def],Rest):-
-    same_predicate(H,Head),
-    get_definition(Clauses,Head,Def,Rest).
-get_definition([([H]:-B)|Clauses],Head,Def,[([H]:-B)|Rest]):-
-    not same_predicate(H,Head),
-    get_definition(Clauses,Head,Def,Rest).
-
 
 handle_undefined(Program,Heads,CompDefs,Comp):-
     setof0(L,
@@ -338,17 +317,4 @@ var_element(X,[Y|_Ys]):-
 	X == Y.	% syntactic identity
 var_element(X,[_Y|Ys]):-
 	var_element(X,Ys).
-
-
-%%% Queries %%%
-
-query2(P,F,CP):-
-	program(P),
-	complete(P,F),
-	transform(F,CP).
-
-program([ ([bird(tweety)]:-[]),
-          ([flies(X)]:-[bird(X),not abnormal(X)]) ]).
-program([ ([likes(peter,S)]:-[student_of(S,peter)]),
-          ([student_of(paul,peter)]:-[]) ]).
 /*End ~source text end~*/

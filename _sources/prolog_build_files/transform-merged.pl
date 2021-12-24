@@ -170,12 +170,4 @@ logical_symbol(&).
 logical_symbol(v).
 logical_symbol(exists).
 logical_symbol(forall).
-
-
-pl( forall(Y,exists(X,mother_of(X,Y))) &
-   -forall(Z,exists(W,woman(Z) => mother_of(Z,W)))).
-pl( forall(X,exists(Y,mouse(X) => tail_of(Y,X)))).
-pl( forall(X,exists(Y,loves(X,Y)) &
-    forall(Z,loves(Y,Z)))).
-pl( forall(X,forall(Y,exists(Z,number(X) & number(Y) => maximum(Z,X,Y))))).
 /*End ~source text end~*/
