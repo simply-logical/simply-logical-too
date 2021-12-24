@@ -729,28 +729,26 @@
 <!--section 8.2-->
 <p>In <a class="reference internal" href="../3_part_iii/8.2.html#sec-8-2"><span class="std std-numref">Section 8.2</span></a>, we presented Predicate Completion as a technique for explicitly handling negative information. A logic program is viewed as a set of predicate definitions, where the only-if parts are implicitly assumed. Below, a program is given which constructs additional clauses representing the only-if parts.</p>
 <p>A program is represented as a list of clauses, where head and body of each clause are lists of atoms, as in the program in the previous section. The output of the Predicate Completion program is a formula in first-order Predicate Logic, which can be transformed to clausal logic by means of the aforementioned program, if desired. Definitions for different predicates are handled separately, so the first step is to partition the program into separate predicate definitions. After completing each of these definitions we add appropriate formulas for each of the undefined predicates.</p>
-<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="c1">% complete(P,F) &lt;- P is a list of predicate definitions,</span>
-<span class="c1">%                  and F is a Predicate Logic formula</span>
-<span class="c1">%                  representing the only-if parts of P</span>
-<span class="nf">complete</span><span class="p">(</span><span class="nv">Program</span><span class="p">,</span><span class="nv">Comp</span><span class="p">):-</span>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-complete">
+<pre class="literal-block source swish" id="swish-complete-code" prolog-file="https://too.simply-logical.space/_sources/prolog_build_files/complete-merged.pl">
+<span></span><span class="nf">complete</span><span class="p">(</span><span class="nv">Program</span><span class="p">,</span><span class="nv">Comp</span><span class="p">):-</span>
     <span class="nf">separate_definitions</span><span class="p">(</span><span class="nv">Program</span><span class="p">,</span><span class="nv">Definitions</span><span class="p">),</span>
     <span class="nf">complete_definitions</span><span class="p">(</span><span class="nv">Definitions</span><span class="p">,</span><span class="nv">CompDefs</span><span class="p">,</span><span class="nv">Heads</span><span class="p">),</span>
     <span class="nf">handle_undefined</span><span class="p">(</span><span class="nv">Program</span><span class="p">,</span><span class="nv">Heads</span><span class="p">,</span><span class="nv">CompDefs</span><span class="p">,</span><span class="nv">Comp</span><span class="p">).</span>
 
 <span class="nf">separate_definitions</span><span class="p">([],[]).</span>
-<span class="nf">separate_definitions</span><span class="p">([([</span><span class="nv">H</span><span class="p">]:-</span><span class="nv">B</span><span class="p">)|</span><span class="nv">Cls</span><span class="p">],[[([</span><span class="nv">H</span><span class="p">]:-</span><span class="nv">B</span><span class="p">)|</span><span class="nv">D</span><span class="p">]|</span><span class="nv">Ds</span><span class="p">]):-</span>
-    <span class="nf">get_definition</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">H</span><span class="p">,</span><span class="nv">D</span><span class="p">,</span><span class="nv">Rest</span><span class="p">),</span>
-    <span class="nf">separate_definitions</span><span class="p">(</span><span class="nv">Rest</span><span class="p">,</span><span class="nv">Ds</span><span class="p">).</span>
-
-<span class="nf">get_definition</span><span class="p">([],</span><span class="nv">Head</span><span class="p">,[],[]).</span>
-<span class="nf">get_definition</span><span class="p">([([</span><span class="nv">H</span><span class="p">]:-</span><span class="nv">B</span><span class="p">)|</span><span class="nv">Cls</span><span class="p">],</span><span class="nv">Head</span><span class="p">,[([</span><span class="nv">H</span><span class="p">]:-</span><span class="nv">B</span><span class="p">)|</span><span class="nv">Def</span><span class="p">],</span><span class="nv">Rest</span><span class="p">):-</span>
+<span class="nf">separate_definitions</span><span class="p">([([</span><span class="nv">Head</span><span class="p">]:-</span><span class="nv">Body</span><span class="p">)|</span><span class="nv">Clauses</span><span class="p">],[[([</span><span class="nv">Head</span><span class="p">]:-</span><span class="nv">Body</span><span class="p">)|</span><span class="nv">Def</span><span class="p">]|</span><span class="nv">Defs</span><span class="p">]):-</span>
+    <span class="nf">get_definition</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">,</span><span class="nv">Head</span><span class="p">,</span><span class="nv">Def</span><span class="p">,</span><span class="nv">Rest</span><span class="p">),</span>
+    <span class="nf">separate_definitions</span><span class="p">(</span><span class="nv">Rest</span><span class="p">,</span><span class="nv">Defs</span><span class="p">).</span>
+    
+<span class="nf">get_definition</span><span class="p">([],</span><span class="k">_</span><span class="nv">Head</span><span class="p">,[],[]).</span>
+<span class="nf">get_definition</span><span class="p">([([</span><span class="nv">H</span><span class="p">]:-</span><span class="nv">B</span><span class="p">)|</span><span class="nv">Clauses</span><span class="p">],</span><span class="nv">Head</span><span class="p">,[([</span><span class="nv">H</span><span class="p">]:-</span><span class="nv">B</span><span class="p">)|</span><span class="nv">Def</span><span class="p">],</span><span class="nv">Rest</span><span class="p">):-</span>
     <span class="nf">same_predicate</span><span class="p">(</span><span class="nv">H</span><span class="p">,</span><span class="nv">Head</span><span class="p">),</span>
-    <span class="nf">get_definition</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Head</span><span class="p">,</span><span class="nv">Def</span><span class="p">,</span><span class="nv">Rest</span><span class="p">).</span>
-<span class="nf">get_definition</span><span class="p">([([</span><span class="nv">H</span><span class="p">]:-</span><span class="nv">B</span><span class="p">)|</span><span class="nv">Cls</span><span class="p">],</span><span class="nv">Head</span><span class="p">,</span><span class="nv">Def</span><span class="p">,[([</span><span class="nv">H</span><span class="p">]:-</span><span class="nv">B</span><span class="p">)|</span><span class="nv">Rest</span><span class="p">]):-</span>
+    <span class="nf">get_definition</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">,</span><span class="nv">Head</span><span class="p">,</span><span class="nv">Def</span><span class="p">,</span><span class="nv">Rest</span><span class="p">).</span>
+<span class="nf">get_definition</span><span class="p">([([</span><span class="nv">H</span><span class="p">]:-</span><span class="nv">B</span><span class="p">)|</span><span class="nv">Clauses</span><span class="p">],</span><span class="nv">Head</span><span class="p">,</span><span class="nv">Def</span><span class="p">,[([</span><span class="nv">H</span><span class="p">]:-</span><span class="nv">B</span><span class="p">)|</span><span class="nv">Rest</span><span class="p">]):-</span>
     <span class="o">not</span> <span class="nf">same_predicate</span><span class="p">(</span><span class="nv">H</span><span class="p">,</span><span class="nv">Head</span><span class="p">),</span>
-    <span class="nf">get_definition</span><span class="p">(</span><span class="nv">Cls</span><span class="p">,</span><span class="nv">Head</span><span class="p">,</span><span class="nv">Def</span><span class="p">,</span><span class="nv">Rest</span><span class="p">).</span>
+    <span class="nf">get_definition</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">,</span><span class="nv">Head</span><span class="p">,</span><span class="nv">Def</span><span class="p">,</span><span class="nv">Rest</span><span class="p">).</span>
 </pre></div>
-</div>
 <p>Undefined predicates are those which occur in bodies of clauses without occurring in any head. The list <code class="docutils literal notranslate"><span class="pre">Heads</span></code> of defined predicates is obtained while completing each predicate definition. Care must be taken to avoid considering <code class="docutils literal notranslate"><span class="pre">not/1</span></code> as an undefined predicate, and also to check the negated literal itself. After constructing the list of undefined literals occurring in clause bodies, each of them is transformed into a formula of the form <span class="math notranslate nohighlight">\(\forall\texttt{X1} \ldots \forall\texttt{Xn:} \; \neg \texttt{p(X1,}\ldots\texttt{,Xn)}\)</span>:</p>
 <div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">handle_undefined</span><span class="p">(</span><span class="nv">Program</span><span class="p">,</span><span class="nv">Heads</span><span class="p">,</span><span class="nv">CompDefs</span><span class="p">,</span><span class="nv">Comp</span><span class="p">):-</span>
     <span class="nf">findall</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span>
@@ -900,6 +898,9 @@
     }
     </script>
     <script>kernelName = 'python3'</script>
+
+    <script>$(function() { $(".swish").LPN({swish:"https://swish.simply-logical.space/"}); });</script>
+
 
               </div>
               
