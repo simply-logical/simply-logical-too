@@ -788,6 +788,10 @@ or we can add a literal like <code class="docutils literal notranslate"><span cl
 <span class="nf">process_example</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">,</span><span class="k">_</span><span class="nv">Done</span><span class="p">,</span><span class="o">-</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">):-</span>
     <span class="o">not</span><span class="p">(</span><span class="nf">covers_d</span><span class="p">(</span><span class="nv">Clauses</span><span class="p">,</span><span class="nv">Example</span><span class="p">)).</span>
 </pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Notice that top-down induction produces the standard definition of <code class="docutils literal notranslate"><span class="pre">element/2</span></code>, in which the recursive clause applies even if the list has a single element (and subsequently fails). This demonstrates a key difference between top-down and bottom-up induction.</p>
+</div>
 <p>Intensional coverage of an example by a set of clauses is checked by a simple meta-interpreter. Since the current hypothesis might include circular clauses like <code class="docutils literal notranslate"><span class="pre">element(X,Y):-element(Y,X)</span></code>, the meta-interpreter employs a depth bound to cut off the search for a proof after a fixed number of steps. Additionally, a background theory might be defined by means of the meta-predicate <code class="docutils literal notranslate"><span class="pre">bg/1</span></code>; we will assume that this background theory is non-circular, and does not contain the predicate to be induced.</p>
 <div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="c1">% covers_d(Clauses,Ex) &lt;- Ex can be proved from Clauses and</span>
 <span class="c1">%                         background theory (max. 10 steps)</span>
