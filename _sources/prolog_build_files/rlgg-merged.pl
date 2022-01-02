@@ -83,13 +83,37 @@ rlgg_literal(L1,[L2|B2],B0,B,S10,S1,S20,S2,V):-
 /** <examples>
 ?-rlgg( append([1,2],[3,4],[1,2,3,4]),
         append([a],[],[a]),
-        [append([1,2],[3,4],[1,2,3,4]), append([a],[],[a])
+        [append([1,2],[3,4],[1,2,3,4]), append([a],[],[a]),
          append([],[],[]),              append([2],[3,4],[2,3,4])],
-       C)
+       C).
 */
 
 
 /*Begin ~source text end~*/
+%%% from library.pl
+
+varsin(Term,Vars):-
+        varsin(Term,[],V),
+        sort(V,Vars).
+
+varsin(V,Vars,[V|Vars]):-
+        var(V),!.
+varsin(Term,V0,V):-
+        functor(Term,_,N),
+        varsin_args(N,Term,V0,V).
+
+varsin_args(0,_,Vars,Vars).
+varsin_args(N,Term,V0,V):-
+        N>0, N1 is N-1,
+        arg(N,Term,ArgN),
+        varsin(ArgN,V0,V1),
+        varsin_args(N1,Term,V1,V).
+
+var_element(X,[Y|_Ys]):-
+	X == Y.	% syntactic identity
+var_element(X,[_Y|Ys]):-
+	var_element(X,Ys).
+
 var_remove_one(X,[Y|Ys],Ys):-
     X == Y.  % syntactic identity
 var_remove_one(X,[Y|Ys],[Y|Zs]):-
