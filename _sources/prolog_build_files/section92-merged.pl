@@ -41,8 +41,6 @@ pos_neg([-E|Exs],Poss,[E|Negs]):-
 covering(Poss,Negs,Model,H0,H):-
     construct_hypothesis(Poss,Negs,Model,Hyp),!,
     remove_pos(Poss,Model,Hyp,NewPoss),
-    nl,writeln('<return> to continue'),
-    readln(_),nl,nl,
     covering(NewPoss,Negs,Model,[Hyp|H0],H).
 covering(P,_N,_M,H0,H):-
     append(H0,P,H).  % add uncovered examples to hypothesis

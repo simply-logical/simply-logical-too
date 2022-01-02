@@ -796,40 +796,11 @@
 <!--Appendix A.2-->
 <p>For simplicity, the body of the RLGG thus constructed is a <strong>list</strong> of literals rather than a conjunction.</p>
 <p>The main algorithm of the RLGG-program is relatively simple: construct the RLGG of two positive examples, and remove all positive examples that are extensionally covered by this clause. Such an algorithm, which induces each clause separately, is also called a <em>covering algorithm</em>. Positive and negative examples, identified by a sign, are first separated by means of the predicate <code class="docutils literal notranslate"><span class="pre">pos_neg/3</span></code>, and the positive examples are combined with a (possibly empty)background model for the background predicates, to yield the model to be used for construction of RLGG’s .</p>
-<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">induce_rlgg</span><span class="p">(</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">):-</span>
-    <span class="nf">pos_neg</span><span class="p">(</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">),</span>  <span class="c1">% split pos. &amp; neg. examples</span>
-    <span class="nf">bg_model</span><span class="p">(</span><span class="nv">BG</span><span class="p">),</span>            <span class="c1">% ground background model</span>
-    <span class="nf">append</span><span class="p">(</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">BG</span><span class="p">,</span><span class="nv">Model</span><span class="p">),</span>   <span class="c1">% Model includes pos.exs.</span>
-    <span class="nf">induce_rlgg</span><span class="p">(</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">,</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">).</span>
-
-<span class="nf">induce_rlgg</span><span class="p">(</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">,</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Clauses</span><span class="p">):-</span>
-    <span class="nf">covering</span><span class="p">(</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">,</span><span class="nv">Model</span><span class="p">,[],</span><span class="nv">Clauses</span><span class="p">).</span>
-
-<span class="c1">% split positive and negative examples</span>
-<span class="nf">pos_neg</span><span class="p">([],[],[]).</span>
-<span class="nf">pos_neg</span><span class="p">([</span><span class="o">+</span><span class="nv">E</span><span class="p">|</span><span class="nv">Exs</span><span class="p">],[</span><span class="nv">E</span><span class="p">|</span><span class="nv">Poss</span><span class="p">],</span><span class="nv">Negs</span><span class="p">):-</span>
-    <span class="nf">pos_neg</span><span class="p">(</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">).</span>
-<span class="nf">pos_neg</span><span class="p">([</span><span class="o">-</span><span class="nv">E</span><span class="p">|</span><span class="nv">Exs</span><span class="p">],</span><span class="nv">Poss</span><span class="p">,[</span><span class="nv">E</span><span class="p">|</span><span class="nv">Negs</span><span class="p">]):-</span>
-    <span class="nf">pos_neg</span><span class="p">(</span><span class="nv">Exs</span><span class="p">,</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">).</span>
-
-<span class="c1">% covering algorithm</span>
-<span class="nf">covering</span><span class="p">(</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">,</span><span class="nv">Model</span><span class="p">,</span><span class="nv">H0</span><span class="p">,</span><span class="nv">H</span><span class="p">):-</span>
-    <span class="nf">construct_hypothesis</span><span class="p">(</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">,</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Hyp</span><span class="p">),!,</span>
-    <span class="nf">remove_pos</span><span class="p">(</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Hyp</span><span class="p">,</span><span class="nv">NewPoss</span><span class="p">),</span>
-    <span class="nf">covering</span><span class="p">(</span><span class="nv">NewPoss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">,</span><span class="nv">Model</span><span class="p">,[</span><span class="nv">Hyp</span><span class="p">|</span><span class="nv">H0</span><span class="p">],</span><span class="nv">H</span><span class="p">).</span>
-<span class="nf">covering</span><span class="p">(</span><span class="nv">P</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">M</span><span class="p">,</span><span class="nv">H0</span><span class="p">,</span><span class="nv">H</span><span class="p">):-</span>
-    <span class="nf">append</span><span class="p">(</span><span class="nv">H0</span><span class="p">,</span><span class="nv">P</span><span class="p">,</span><span class="nv">H</span><span class="p">).</span>  <span class="c1">% add uncovered examples to hypothesis</span>
-
-<span class="c1">% remove covered positive examples</span>
-<span class="nf">remove_pos</span><span class="p">([],</span><span class="nv">M</span><span class="p">,</span><span class="nv">H</span><span class="p">,[]).</span>
-<span class="nf">remove_pos</span><span class="p">([</span><span class="nv">P</span><span class="p">|</span><span class="nv">Ps</span><span class="p">],</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Hyp</span><span class="p">,</span><span class="nv">NewP</span><span class="p">):-</span>
-    <span class="nf">covers_ex</span><span class="p">(</span><span class="nv">Hyp</span><span class="p">,</span><span class="nv">P</span><span class="p">,</span><span class="nv">Model</span><span class="p">),!,</span>
-    <span class="nf">write</span><span class="p">(</span><span class="s s-Atom">&#39;Covered example: &#39;</span><span class="p">),</span><span class="nf">write</span><span class="p">(</span><span class="nv">P</span><span class="p">),</span><span class="s s-Atom">nl</span><span class="p">,</span>
-    <span class="nf">remove_pos</span><span class="p">(</span><span class="nv">Ps</span><span class="p">,</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Hyp</span><span class="p">,</span><span class="nv">NewP</span><span class="p">).</span>
-<span class="nf">remove_pos</span><span class="p">([</span><span class="nv">P</span><span class="p">|</span><span class="nv">Ps</span><span class="p">],</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Hyp</span><span class="p">,[</span><span class="nv">P</span><span class="p">|</span><span class="nv">NewP</span><span class="p">]):-</span>
-    <span class="nf">remove_pos</span><span class="p">(</span><span class="nv">Ps</span><span class="p">,</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Hyp</span><span class="p">,</span><span class="nv">NewP</span><span class="p">).</span>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-induce-rlgg">
+<pre class="literal-block source swish" id="swish-induce-rlgg-code">
+<span></span><span class="s s-Atom">source</span><span class="o">-</span><span class="s s-Atom">text</span><span class="o">-</span><span class="nn">end</span><span class="p">:</span>   <span class="s s-Atom">induce_rlgg</span><span class="o">-</span><span class="s s-Atom">end</span>
+<span class="s s-Atom">build</span><span class="o">-</span><span class="nn">file</span><span class="p">:</span>        <span class="s s-Atom">true</span>
 </pre></div>
-</div>
 <p>The two predicates called by the covering algorithm are <code class="docutils literal notranslate"><span class="pre">construct_hypothesis/4</span></code> to construct a new clause, and <code class="docutils literal notranslate"><span class="pre">covers_ex/3</span></code> to check extensional coverage.</p>
 <div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="c1">% extensional coverage, relative to a ground model</span>
 <span class="nf">covers_ex</span><span class="p">((</span><span class="nv">Head</span><span class="p">:-</span><span class="nv">Body</span><span class="p">),</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Model</span><span class="p">):-</span>
@@ -883,7 +854,7 @@
     <span class="nf">element</span><span class="p">(</span><span class="nv">N</span><span class="p">,</span><span class="nv">Negs</span><span class="p">),</span>
     <span class="nf">covers_ex</span><span class="p">(</span><span class="nv">Clause</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">Model</span><span class="p">).</span>
 
-<span class="c1">%%% var_element/2: see Section 4.1.2 (appendix)</span>
+<span class="c1">%%% var_element/2: see Section 10.2 (appendix)</span>
 </pre></div>
 </div>
 <!--Appendix A.2-->
@@ -1009,8 +980,6 @@
 <span class="nf">covering</span><span class="p">(</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">,</span><span class="nv">Model</span><span class="p">,</span><span class="nv">H0</span><span class="p">,</span><span class="nv">H</span><span class="p">):-</span>
     <span class="nf">construct_hypothesis</span><span class="p">(</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">,</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Hyp</span><span class="p">),!,</span>
     <span class="nf">remove_pos</span><span class="p">(</span><span class="nv">Poss</span><span class="p">,</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Hyp</span><span class="p">,</span><span class="nv">NewPoss</span><span class="p">),</span>
-    <span class="s s-Atom">nl</span><span class="p">,</span><span class="nf">writeln</span><span class="p">(</span><span class="s s-Atom">&#39;&lt;return&gt; to continue&#39;</span><span class="p">),</span>
-    <span class="nf">readln</span><span class="p">(</span><span class="k">_</span><span class="p">),</span><span class="s s-Atom">nl</span><span class="p">,</span><span class="s s-Atom">nl</span><span class="p">,</span>
     <span class="nf">covering</span><span class="p">(</span><span class="nv">NewPoss</span><span class="p">,</span><span class="nv">Negs</span><span class="p">,</span><span class="nv">Model</span><span class="p">,[</span><span class="nv">Hyp</span><span class="p">|</span><span class="nv">H0</span><span class="p">],</span><span class="nv">H</span><span class="p">).</span>
 <span class="nf">covering</span><span class="p">(</span><span class="nv">P</span><span class="p">,</span><span class="k">_</span><span class="nv">N</span><span class="p">,</span><span class="k">_</span><span class="nv">M</span><span class="p">,</span><span class="nv">H0</span><span class="p">,</span><span class="nv">H</span><span class="p">):-</span>
     <span class="nf">append</span><span class="p">(</span><span class="nv">H0</span><span class="p">,</span><span class="nv">P</span><span class="p">,</span><span class="nv">H</span><span class="p">).</span>  <span class="c1">% add uncovered examples to hypothesis</span>
