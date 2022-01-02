@@ -831,6 +831,15 @@
 <span class="nf">remove_pos</span><span class="p">([</span><span class="nv">P</span><span class="p">|</span><span class="nv">Ps</span><span class="p">],</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Hyp</span><span class="p">,[</span><span class="nv">P</span><span class="p">|</span><span class="nv">NewP</span><span class="p">]):-</span>
     <span class="nf">remove_pos</span><span class="p">(</span><span class="nv">Ps</span><span class="p">,</span><span class="nv">Model</span><span class="p">,</span><span class="nv">Hyp</span><span class="p">,</span><span class="nv">NewP</span><span class="p">).</span>
 </pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you run the first suggested query in this code example you will see that it induces the following definition of <code class="docutils literal notranslate"><span class="pre">element/2</span></code>:</p>
+<div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="nf">element</span><span class="p">(</span><span class="nv">A</span><span class="p">,[</span><span class="nv">A</span><span class="p">|</span><span class="k">_</span><span class="p">]).</span>
+<span class="nf">element</span><span class="p">(</span><span class="nv">A</span><span class="p">,[</span><span class="k">_</span><span class="p">,</span><span class="nv">B</span><span class="p">|</span><span class="nv">C</span><span class="p">]):-</span><span class="nf">element</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span> <span class="p">[</span><span class="nv">B</span><span class="p">|</span><span class="nv">C</span><span class="p">]).</span>
+</pre></div>
+</div>
+<p>What is interesting here is that the recursive clause stipulates that the second argument is a list with at least <em>two</em> elements. This is logically correct, since one-element lists are taken care of by the base case, and in fact slightly more efficient.</p>
+</div>
 <p>The two predicates called by the covering algorithm are <code class="docutils literal notranslate"><span class="pre">construct_hypothesis/4</span></code> to construct a new clause, and <code class="docutils literal notranslate"><span class="pre">covers_ex/3</span></code> to check extensional coverage.</p>
 <div class="highlight-Prolog notranslate"><div class="highlight"><pre><span></span><span class="c1">% extensional coverage, relative to a ground model</span>
 <span class="nf">covers_ex</span><span class="p">((</span><span class="nv">Head</span><span class="p">:-</span><span class="nv">Body</span><span class="p">),</span><span class="nv">Example</span><span class="p">,</span><span class="nv">Model</span><span class="p">):-</span>
