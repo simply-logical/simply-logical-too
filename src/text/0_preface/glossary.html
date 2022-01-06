@@ -770,6 +770,110 @@
 </dd>
 <dt id="term-general-clause">general clause<a class="headerlink" href="#term-general-clause" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
 </dd>
+<dt id="term-general-and-test">general and test<a class="headerlink" href="#term-general-and-test" title="Permalink to this term">¶</a></dt><dd><p>A typical Prolog backtracking search strategy, where a <em>generator</em> predicate produces potential solutions and a <em>tester</em> checks whether all requirements are satisfied. Below are a few classic AI examples of <em>blind</em> generate and test, where all checking is done in the tester. The search will be more efficient if some requirements are checked in the generator.</p>
+</dd>
+</dl>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-gentest">
+<pre class="literal-block source swish" id="swish-gentest-code">
+<span></span><span class="cm">/*</span>
+<span class="cm"> * Find unique assignments of decimal digits to letters</span>
+<span class="cm"> * such that the sum is correct. </span>
+<span class="cm"> *</span>
+<span class="cm"> *     S E N D</span>
+<span class="cm"> *     M O R E</span>
+<span class="cm"> *     ------- +</span>
+<span class="cm"> *   M O N E Y</span>
+<span class="cm"> */</span>
+ 
+<span class="c1">% Easy one: 8 letters, plenty of solutions</span>
+<span class="nf">sum1</span><span class="p">(</span><span class="nv">Sum</span><span class="p">):-</span>
+	<span class="nv">Sum</span><span class="s s-Atom">=</span><span class="p">([</span><span class="nv">S</span><span class="p">,</span><span class="nv">E</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">D</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="nv">M</span><span class="p">,</span><span class="nv">O</span><span class="p">,</span><span class="nv">R</span><span class="p">,</span><span class="nv">E</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="nv">M</span><span class="p">,</span><span class="nv">O</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">E</span><span class="p">,</span><span class="nv">Y</span><span class="p">]),</span>
+	<span class="nf">gentest</span><span class="p">([</span><span class="nv">S</span><span class="p">,</span><span class="nv">E</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">D</span><span class="p">,</span><span class="nv">M</span><span class="p">,</span><span class="nv">O</span><span class="p">,</span><span class="nv">R</span><span class="p">,</span><span class="nv">Y</span><span class="p">],</span><span class="nv">Sum</span><span class="p">).</span>
+
+<span class="cm">/*</span>
+<span class="cm"> *     C R O S S</span>
+<span class="cm"> *     R O A D S</span>
+<span class="cm"> *     --------- +</span>
+<span class="cm"> *   D A N G E R</span>
+<span class="cm"> */</span>
+ 
+<span class="c1">% Harder one: 9 letters, only one solution</span>
+<span class="nf">sum2</span><span class="p">(</span><span class="nv">Sum</span><span class="p">):-</span>
+	<span class="nv">Sum</span><span class="s s-Atom">=</span><span class="p">([</span><span class="nv">C</span><span class="p">,</span><span class="nv">R</span><span class="p">,</span><span class="nv">O</span><span class="p">,</span><span class="nv">S</span><span class="p">,</span><span class="nv">S</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="nv">R</span><span class="p">,</span><span class="nv">O</span><span class="p">,</span><span class="nv">A</span><span class="p">,</span><span class="nv">D</span><span class="p">,</span><span class="nv">S</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="nv">D</span><span class="p">,</span><span class="nv">A</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">G</span><span class="p">,</span><span class="nv">E</span><span class="p">,</span><span class="nv">R</span><span class="p">]),</span>
+	<span class="nf">gentest</span><span class="p">([</span><span class="nv">C</span><span class="p">,</span><span class="nv">R</span><span class="p">,</span><span class="nv">O</span><span class="p">,</span><span class="nv">S</span><span class="p">,</span><span class="nv">A</span><span class="p">,</span><span class="nv">D</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">G</span><span class="p">,</span><span class="nv">E</span><span class="p">],</span><span class="nv">Sum</span><span class="p">).</span>
+
+<span class="c1">% Blind generate-and-test approach</span>
+<span class="nf">gentest</span><span class="p">(</span><span class="nv">Letters</span><span class="p">,</span><span class="nv">Sum</span><span class="p">):-</span>
+	<span class="nf">generate</span><span class="p">(</span><span class="nv">Letters</span><span class="p">),</span>
+	<span class="nf">test</span><span class="p">(</span><span class="nv">Sum</span><span class="p">).</span>
+
+<span class="nf">generate</span><span class="p">(</span><span class="nv">Letters</span><span class="p">):-</span>
+	<span class="nf">generate</span><span class="p">(</span><span class="nv">Letters</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]).</span>
+
+<span class="nf">generate</span><span class="p">([],</span><span class="k">_</span><span class="p">).</span>
+<span class="nf">generate</span><span class="p">([</span><span class="nv">L</span><span class="p">|</span><span class="nv">Ls</span><span class="p">],</span><span class="nv">Digits</span><span class="p">):-</span>
+	<span class="nf">remove_one</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span><span class="nv">Digits</span><span class="p">,</span><span class="nv">LessDigits</span><span class="p">),</span>
+	<span class="nf">generate</span><span class="p">(</span><span class="nv">Ls</span><span class="p">,</span><span class="nv">LessDigits</span><span class="p">).</span>
+
+<span class="nf">test</span><span class="p">(</span><span class="nv">Word1</span><span class="o">+</span><span class="nv">Word2</span><span class="o">=</span><span class="nv">Word3</span><span class="p">):-</span>
+	<span class="nf">calc</span><span class="p">(</span><span class="nv">Word1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nv">N1</span><span class="p">),</span>
+	<span class="nf">calc</span><span class="p">(</span><span class="nv">Word2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nv">N2</span><span class="p">),</span>
+	<span class="nf">calc</span><span class="p">(</span><span class="nv">Word3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nv">N3</span><span class="p">),</span>
+	<span class="nv">N3</span> <span class="o">is</span> <span class="nv">N1</span><span class="o">+</span><span class="nv">N2</span><span class="p">.</span>
+
+<span class="nf">calc</span><span class="p">([],</span><span class="nv">N</span><span class="p">,</span><span class="nv">N</span><span class="p">).</span>
+<span class="nf">calc</span><span class="p">([</span><span class="nv">H</span><span class="p">|</span><span class="nv">T</span><span class="p">],</span><span class="nv">N0</span><span class="p">,</span><span class="nv">N</span><span class="p">):-</span>
+	<span class="nv">N1</span> <span class="o">is</span> <span class="mi">10</span><span class="o">*</span><span class="nv">N0</span><span class="o">+</span><span class="nv">H</span><span class="p">,</span>
+	<span class="nf">calc</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span><span class="nv">N1</span><span class="p">,</span><span class="nv">N</span><span class="p">).</span>
+
+<span class="c1">% remove_one(X,Ys,Zs) &lt;- Zs is list Ys minus one occurrence of X</span>
+<span class="nf">remove_one</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="nv">X</span><span class="p">|</span><span class="nv">Ys</span><span class="p">],</span><span class="nv">Ys</span><span class="p">).</span>
+<span class="nf">remove_one</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="nv">Y</span><span class="p">|</span><span class="nv">Ys</span><span class="p">],[</span><span class="nv">Y</span><span class="p">|</span><span class="nv">Zs</span><span class="p">]):-</span>
+	<span class="nf">remove_one</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Ys</span><span class="p">,</span><span class="nv">Zs</span><span class="p">).</span><div class="hide-examples">
+
+<span class="cm">/** &lt;examples&gt;</span>
+<span class="cm">?- sum1(Sum).</span>
+<span class="cm">?- sum2(Sum).</span>
+<span class="cm">*/</span></div>
+</pre></div>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-nqueens">
+<pre class="literal-block source swish" id="swish-nqueens-code">
+<span></span><span class="c1">% :-use_rendering(chess). % Uncomment this line for chess renderer</span>
+
+<span class="c1">%%% Place N queens on an N-by-N chess board such that none of them are attacked</span>
+<span class="c1">%%% Columns are listed in the order row 1, row 2, ..., row 8</span>
+<span class="nf">nqueens</span><span class="p">(</span><span class="nv">N</span><span class="p">,</span><span class="nv">Columns</span><span class="p">)</span> <span class="p">:-</span>
+    <span class="nf">setof</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nf">between</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nv">N</span><span class="p">,</span><span class="nv">X</span><span class="p">),</span><span class="nv">Rows</span><span class="p">),</span>
+    <span class="nf">permute</span><span class="p">(</span><span class="nv">Rows</span><span class="p">,</span><span class="nv">Columns</span><span class="p">),</span> <span class="c1">% generator</span>
+    <span class="nf">test</span><span class="p">(</span><span class="nv">Columns</span><span class="p">).</span>         <span class="c1">% tester</span>
+
+<span class="c1">%%% blind generator: permute rows</span>
+<span class="nf">permute</span><span class="p">([],[]).</span>
+<span class="nf">permute</span><span class="p">(</span><span class="nv">L</span><span class="p">,[</span><span class="nv">X</span><span class="p">|</span><span class="nv">PR</span><span class="p">]):-</span>
+	<span class="nf">remove_one</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">L</span><span class="p">,</span><span class="nv">R</span><span class="p">),</span>
+	<span class="nf">permute</span><span class="p">(</span><span class="nv">R</span><span class="p">,</span><span class="nv">PR</span><span class="p">).</span>
+    
+<span class="nf">remove_one</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="nv">X</span><span class="p">|</span><span class="nv">Ys</span><span class="p">],</span><span class="nv">Ys</span><span class="p">).</span>
+<span class="nf">remove_one</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="nv">Y</span><span class="p">|</span><span class="nv">Ys</span><span class="p">],[</span><span class="nv">Y</span><span class="p">|</span><span class="nv">Zs</span><span class="p">]):-</span>
+	<span class="nf">remove_one</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">Ys</span><span class="p">,</span><span class="nv">Zs</span><span class="p">).</span>
+
+<span class="c1">%%% tester</span>
+<span class="nf">test</span><span class="p">([]).</span>
+<span class="nf">test</span><span class="p">([</span><span class="nv">Column</span><span class="p">|</span><span class="nv">Columns</span><span class="p">])</span> <span class="p">:-</span>
+    <span class="nf">noattack</span><span class="p">(</span><span class="nv">Column</span><span class="p">,</span><span class="nv">Columns</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+    <span class="nf">test</span><span class="p">(</span><span class="nv">Columns</span><span class="p">).</span>
+    
+<span class="nf">noattack</span><span class="p">(</span><span class="k">_</span><span class="p">,[],</span><span class="k">_</span><span class="p">).</span>
+<span class="nf">noattack</span><span class="p">(</span><span class="nv">Y</span><span class="p">,[</span><span class="nv">Y1</span><span class="p">|</span><span class="nv">Ylist</span><span class="p">],</span><span class="nv">Xdist</span><span class="p">)</span> <span class="p">:-</span>
+    <span class="nf">abs</span><span class="p">(</span><span class="nv">Y</span><span class="o">-</span><span class="nv">Y1</span><span class="p">)</span> <span class="s s-Atom">=\=</span> <span class="nv">Xdist</span><span class="p">,</span>
+    <span class="nv">Xdist1</span> <span class="o">is</span> <span class="nv">Xdist</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nf">noattack</span><span class="p">(</span><span class="nv">Y</span><span class="p">,</span><span class="nv">Ylist</span><span class="p">,</span><span class="nv">Xdist1</span><span class="p">).</span><div class="hide-examples">
+
+<span class="cm">/** &lt;examples&gt;</span>
+<span class="cm">?- nqueens(8,Columns).</span>
+<span class="cm">*/</span></div>
+</pre></div>
+<dl class="glossary">
 <dt id="term-ground-term-atom-clause">ground term/atom/clause<a class="headerlink" href="#term-ground-term-atom-clause" title="Permalink to this term">¶</a></dt><dd><p>A <a class="reference internal" href="#term-term"><span class="xref std std-term">term</span></a>, <a class="reference internal" href="#term-atom"><span class="xref std std-term">atom</span></a> or <a class="reference internal" href="#term-clause"><span class="xref std std-term">clause</span></a> without <a class="reference internal" href="#term-variable"><span class="xref std std-term">variables</span></a>.</p>
 </dd>
 <dt id="term-head">head<a class="headerlink" href="#term-head" title="Permalink to this term">¶</a></dt><dd><p>TO DO</p>
@@ -876,6 +980,9 @@
     }
     </script>
     <script>kernelName = 'python3'</script>
+
+    <script>$(function() { $(".swish").LPN({swish:"https://swish.simply-logical.space/"}); });</script>
+
 
               </div>
               
