@@ -949,6 +949,20 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
 </div>
 <p>Finally, we mention that although resolution can always be used to prove inconsistency of a set of clauses it is not always fit to prove the opposite, i.e. consistency of a set of clauses. For instance, <code class="docutils literal notranslate"><span class="pre">a</span></code> is not a logical consequence of <code class="docutils literal notranslate"><span class="pre">a:-a</span></code>; yet, if we try to prove the inconsistency of <code class="docutils literal notranslate"><span class="pre">:-a</span></code> and <code class="docutils literal notranslate"><span class="pre">a:-a</span></code> (which should fail) we can go on applying resolution forever! The reason, of course, is that there is a loop in the system: applying resolution to <code class="docutils literal notranslate"><span class="pre">:-a</span></code> and <code class="docutils literal notranslate"><span class="pre">a:-a</span></code> again yields <code class="docutils literal notranslate"><span class="pre">:-a</span></code>. In this simple case it is easy to check for loops: just maintain a list of previously derived clauses, and do not proceed with clauses that have been derived previously.</p>
 <p>However, as we will see, this is not possible in the general case of full clausal logic, which is <em>semi-decidable</em> with respect to the question ‘is <span class="math notranslate nohighlight">\(B\)</span> a logical consequence of <span class="math notranslate nohighlight">\(A\)</span>’: there is an algorithm which derives, in finite time, a proof if one exists, but there is no algorithm which, for any <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, halts and returns ‘no’ if no proof exists. The reason for this is that interpretations for full clausal logic are in general infinite. As a consequence, some Prolog programs may loop forever (just like some Pascal programs). One might suggest that it should be possible to check, just by examining the source code, whether a program is going to loop or not, but, as Alan Turing showed, this is, in general, impossible (the Halting Problem). That is, you can write programs for checking termination of programs, but for any such termination checking program you can write a program on which it will not terminate itself!</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<div class="extract swish highlight highlight-Prolog notranslate" id="swish-prop">
+<pre class="literal-block source swish" id="swish-prop-code" prolog-file="https://too.simply-logical.space/_sources/prolog_build_files/prop-merged.pl">
+<span></span><span class="nf">prop_atom</span><span class="p">(</span><span class="s s-Atom">married</span><span class="p">).</span>
+<span class="nf">prop_atom</span><span class="p">(</span><span class="s s-Atom">bachelor</span><span class="p">).</span>
+<span class="nf">prop_atom</span><span class="p">(</span><span class="s s-Atom">man</span><span class="p">).</span>
+<span class="nf">prop_atom</span><span class="p">(</span><span class="s s-Atom">adult</span><span class="p">).</span>
+
+
+<span class="c1">% Propositional atoms are trivially ground </span>
+<span class="nf">ground_atom</span><span class="p">(</span><span class="nv">A</span><span class="p">):-</span><span class="nf">prop_atom</span><span class="p">(</span><span class="nv">A</span><span class="p">).</span>
+</pre></div>
+</div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -980,6 +994,9 @@ A Herbrand interpretation can be viewed as describing a possible state of affair
     }
     </script>
     <script>kernelName = 'python3'</script>
+
+    <script>$(function() { $(".swish").LPN({swish:"https://swish.simply-logical.space/"}); });</script>
+
 
               </div>
               
